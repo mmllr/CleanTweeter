@@ -1,0 +1,17 @@
+build
+*.pbxuser
+*.mode?v3
+.DS_Store
+*.perspectivev3
+xcuserdata
+build.obj
+build.pch
+build.sym
+coverage.xml
+test-reports
+lint.xml
+compile_commands.json
+xcodebuild.log
+*.xccheckout
+Frank
+

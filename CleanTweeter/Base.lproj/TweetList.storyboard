@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pwg-bJ-8lD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6250"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Clean Tweeter-->
+        <scene sceneID="VVL-Ha-CJl">
+            <objects>
+                <tableViewController id="pwg-bJ-8lD" customClass="TweetListTableViewController" customModule="CleanTweeter" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="LgA-aI-QZ0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeadingContentCell" id="ZH7-Yf-aim" customClass="HeadingContentCell" customModule="CleanTweeter" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZH7-Yf-aim" id="qLM-aY-2DF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-qe-Wmc">
+                                            <rect key="frame" x="8" y="8" width="50" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOZ-H6-X9Z">
+                                            <rect key="frame" x="555" y="8" width="25.5" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzx-zD-lAq">
+                                            <rect key="frame" x="8" y="29" width="572.5" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gzx-zD-lAq" firstAttribute="bottom" secondItem="qLM-aY-2DF" secondAttribute="bottomMargin" id="0Pj-GH-62c"/>
+                                        <constraint firstItem="RxC-qe-Wmc" firstAttribute="bottom" secondItem="gzx-zD-lAq" secondAttribute="top" id="0ek-Da-zC2"/>
+                                        <constraint firstItem="RxC-qe-Wmc" firstAttribute="top" secondItem="qLM-aY-2DF" secondAttribute="topMargin" id="3RN-8v-uNO"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gzx-zD-lAq" secondAttribute="trailing" constant="11" id="B9L-cl-m6i"/>
+                                        <constraint firstItem="XOZ-H6-X9Z" firstAttribute="top" secondItem="qLM-aY-2DF" secondAttribute="topMargin" id="Xi9-F2-69K"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XOZ-H6-X9Z" secondAttribute="trailing" constant="11" id="gpe-XF-0ea"/>
+                                        <constraint firstItem="gzx-zD-lAq" firstAttribute="leading" secondItem="RxC-qe-Wmc" secondAttribute="leading" id="qMO-NM-jbO"/>
+                                        <constraint firstItem="RxC-qe-Wmc" firstAttribute="leading" secondItem="qLM-aY-2DF" secondAttribute="leadingMargin" id="xjp-U2-yeN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentLabel" destination="gzx-zD-lAq" id="r0w-0P-5pT"/>
+                                    <outlet property="primaryHeadingLabel" destination="RxC-qe-Wmc" id="xya-Sy-Wqi"/>
+                                    <outlet property="secondaryContentLabel" destination="XOZ-H6-X9Z" id="V5H-ZT-zDZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pwg-bJ-8lD" id="mRp-QL-gfu"/>
+                            <outlet property="delegate" destination="pwg-bJ-8lD" id="Jd7-Qw-RXh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Clean Tweeter" id="MbN-RE-46L"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0j-X1-dta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971" y="183"/>
+        </scene>
+    </scenes>
+</document>
