@@ -12,17 +12,46 @@ public class Tweet : Comparable {
 	public let author: String
 	public let content: String
 	public let publicationDate: NSDate
+	public let mentionedUsers: [String]
+	public let tags: [String]
 
 	public init(author: String, content: String, publicationDate: NSDate = NSDate()) {
 		self.author = author
-		if countElements(content) > 160 {
-			self.content = content.substringToIndex(advance(content.startIndex, 160))
-		}
-		else {
-			self.content = content
-		}
+		self.content = countElements(content) > 160 ? content.substringToIndex(advance(content.startIndex, 160)) : content
 		self.publicationDate = publicationDate.timeIntervalSinceNow > 0 ? NSDate() : publicationDate
+		self.mentionedUsers = findMentions(self.content)
+		self.tags = findTags(self.content)
 	}
+}
+
+func findRangesInText(text: String, #pattern: String) -> [Range<String.Index>] {
+	// "((@|#)([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))|(http(s)?://([A-Z0-9a-z._-]*(/)?)*)"
+	let regex = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: nil)
+
+	if let ranges = regex?.matchesInString(text, options: .ReportCompletion, range: NSMakeRange(0, countElements(text))) {
+		return ranges.map {
+			let start = advance(text.startIndex, $0.range.location)
+			let end = advance(text.startIndex, NSMaxRange($0.range))
+			return Range(start: start, end: end)
+		}
+	}
+	return []
+}
+
+func findMentions(text: String) -> [String] {
+	let ranges = findRangesInText(text, pattern: "(@([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
+
+	return unique(ranges.map {
+		return text.substringWithRange($0)
+	})
+}
+
+func findTags(text: String) -> [String] {
+	let ranges = findRangesInText(text, pattern: "(#([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
+	
+	return unique(ranges.map {
+		return text.substringWithRange($0)
+		})
 }
 
 public func ==(lhs: Tweet, rhs: Tweet) -> Bool {

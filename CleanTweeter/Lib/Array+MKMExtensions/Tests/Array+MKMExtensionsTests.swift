@@ -7,7 +7,11 @@
 //
 
 import XCTest
+#if os(iOS)
 import CleanTweeter
+#else
+import CleanTweeterMac
+#endif
 
 class Array_MKMExtensionsTests: XCTestCase {
 
@@ -19,5 +23,15 @@ class Array_MKMExtensionsTests: XCTestCase {
 		let arrayOfArrayOfStrings = [["one", "two"], ["three"], ["four", "five", "six"]]
 
 		XCTAssertEqual(flatten(arrayOfArrayOfStrings), ["one", "two", "three", "four", "five", "six"])
+	}
+
+	func testThatAnArrayCanBeUniqued() {
+		let array = [1, 1, 2, 4, 6, 7, 6, 8, 8, 9]
+
+		XCTAssertEqual(unique(array), [1, 2, 4, 6, 7, 8, 9])
+
+		let strings = ["one", "two", "one", "three"]
+
+		XCTAssertEqual(unique(strings), ["one", "two", "three"])
 	}
 }

@@ -7,7 +7,14 @@
 //
 
 import XCTest
+#if os(iOS)
 import CleanTweeter
+import UIKit
+#else
+import CleanTweeterMac
+import Cocoa
+#endif
+
 
 class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInput {
 	var sut: TweetListPresenter!
@@ -17,7 +24,12 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
     override func setUp() {
         super.setUp()
 
-		sut = TweetListPresenter()
+		#if os(iOS)
+		let resourceFactory = MobileResourceFactory()
+#else
+		let resourceFactory = OSXResourceFactory()
+#endif
+		sut = TweetListPresenter(resourceFactory: resourceFactory)
 		sut.view = self
 		sut.interactor = self
     }
@@ -46,9 +58,9 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 		sut.foundTweets(response)
 
 		XCTAssertEqual(self.viewModel, [
-			TweetListItem(primaryHeading: "u1", secondaryHeading: "a1", content: "c1"),
-			TweetListItem(primaryHeading: "u2", secondaryHeading: "a2", content: "c2"),
-			TweetListItem(primaryHeading: "u3", secondaryHeading: "a3", content: "c3")
+			TweetListItem(primaryHeading: "u1", secondaryHeading: "a1", content: NSAttributedString(string: "c1")),
+			TweetListItem(primaryHeading: "u2", secondaryHeading: "a2", content: NSAttributedString(string: "c2")),
+			TweetListItem(primaryHeading: "u3", secondaryHeading: "a3", content: NSAttributedString(string: "c3"))
 			])
 	}
 
@@ -58,15 +70,31 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 		XCTAssertEqual(self.requestedUser, "requested user")
 	}
 
-	func testThatAHashTagWillBeBlue() {
-		let content = "#Hashtag"
+	func testThatKeywordsInTweetsWillBeHighlighted() {
+		let content = "@mention plain text #tag"
 
-		let range: NSRange = NSMakeRange(0, 0)
-		let atributes = self.attributeTweet(content).attributesAtIndex(location: 0, effectiveRange: &range)
-		
+		let response = [
+			TweetListResponseModel(user: "u1", content: content, age: "a1")
+		]
+
+		sut.foundTweets(response)
+
+		let mentionRange = (content as NSString).rangeOfString("@mention")
+		let tagRange = (content as NSString).rangeOfString("#tag")
+
+		let expectedString = NSMutableAttributedString(string: content)
+
+		for range in [mentionRange, tagRange] {
+#if os(iOS)
+			let color = UIColor.blueColor()
+#else
+			let color = NSColor.blueColor()
+#endif
+			expectedString.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+		}
+
+		let viewModelItem = self.viewModel[0]
+		XCTAssertEqual(viewModelItem.content, expectedString)
 	}
-	
-	func attributeTweet(tweet: String) -> NSAttributedString {
-		return NSAttributedString(string: tweet)
-	}
+
 }

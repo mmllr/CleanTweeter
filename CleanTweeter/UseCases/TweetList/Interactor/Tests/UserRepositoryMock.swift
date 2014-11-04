@@ -7,7 +7,11 @@
 //
 
 import Foundation
+#if os(iOS)
 import CleanTweeter
+#else
+import CleanTweeterMac
+#endif
 
 class UserRepositoryMock : UserRepository {
 	var store: Dictionary<String, User> = [:]

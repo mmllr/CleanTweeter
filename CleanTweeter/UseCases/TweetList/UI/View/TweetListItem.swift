@@ -11,9 +11,9 @@ import Foundation
 public struct TweetListItem : Equatable {
 	public var primaryHeading: String
 	public var secondaryHeading: String
-	public var content: String
+	public var content: NSAttributedString
 
-	public init(primaryHeading: String, secondaryHeading: String, content: String) {
+	public init(primaryHeading: String, secondaryHeading: String, content: NSAttributedString) {
 		self.primaryHeading = primaryHeading
 		self.secondaryHeading = secondaryHeading
 		self.content = content
@@ -27,5 +27,5 @@ public func==(lhs: TweetListItem, rhs: TweetListItem) -> Bool {
 	if lhs.secondaryHeading != rhs.secondaryHeading {
 		return false
 	}
-	return lhs.content == rhs.content
+	return lhs.content.isEqualToAttributedString(rhs.content)
 }

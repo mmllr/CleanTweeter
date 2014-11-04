@@ -42,7 +42,7 @@ public class TweetListTableViewController: UITableViewController, TweetListView 
 		if let contentCell = cell as? HeadingContentCell {
 			contentCell.primaryHeadingLabel.text = self.viewModel[indexPath.row].primaryHeading
 			contentCell.secondaryContentLabel.text = self.viewModel[indexPath.row].secondaryHeading
-			contentCell.contentLabel.text = self.viewModel[indexPath.row].content
+			contentCell.contentLabel.attributedText = self.viewModel[indexPath.row].content
 		}
 		return cell! as UITableViewCell
 	}

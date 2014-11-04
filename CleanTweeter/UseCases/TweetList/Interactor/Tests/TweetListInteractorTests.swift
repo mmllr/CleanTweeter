@@ -7,8 +7,12 @@
 //
 
 import XCTest
+#if os(iOS)
 import CleanTweeter
-
+#else
+import CleanTweeterMac
+#endif
+	
 class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 	var sut: TweetListInteractor?
 	var repositoryMock: UserRepositoryMock = UserRepositoryMock()

@@ -15,9 +15,9 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	var tableView: UITableView!
 	var requestedUser: String = ""
 	var viewModel: [TweetListItem] = [
-		TweetListItem(primaryHeading: "Item 1 - 1.Heading", secondaryHeading: "Item 1 - 2.Heading", content: "Item 1 - content"),
-		TweetListItem(primaryHeading: "Item 2 - 1.Heading", secondaryHeading: "Item 2 - 2.Heading", content: "Item 2 - content"),
-		TweetListItem(primaryHeading: "Item 3 - 1.Heading", secondaryHeading: "Item 3 - 2.Heading", content: "Item 3 - content")
+		TweetListItem(primaryHeading: "Item 1 - 1.Heading", secondaryHeading: "Item 1 - 2.Heading", content: NSAttributedString(string: "Item 1 - content")),
+		TweetListItem(primaryHeading: "Item 2 - 1.Heading", secondaryHeading: "Item 2 - 2.Heading", content: NSAttributedString(string: "Item 2 - content")),
+		TweetListItem(primaryHeading: "Item 3 - 1.Heading", secondaryHeading: "Item 3 - 2.Heading", content: NSAttributedString(string: "Item 3 - content"))
 	]
 
     override func setUp() {
@@ -52,7 +52,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 
 			XCTAssertEqual(headingCell.primaryHeadingLabel.text!, viewModel[index].primaryHeading)
 			XCTAssertEqual(headingCell.secondaryContentLabel.text!, viewModel[index].secondaryHeading)
-			XCTAssertEqual(headingCell.contentLabel.text!, viewModel[index].content)
+			XCTAssertEqual(headingCell.contentLabel.attributedText!, viewModel[index].content)
 		}
 	}
 

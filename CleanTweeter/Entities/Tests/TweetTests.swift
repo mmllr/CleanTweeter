@@ -85,4 +85,40 @@ class TweetTests: XCTestCase {
 
 		XCTAssertGreaterThan(t1, t2)
 	}
+
+	func testThatATweetWithOneMentionedUserHasTheUserWithoutTheAtSignInItsMentionedUsers() {
+		let tweet = Tweet(author: "a", content: "@mentionedUser", publicationDate: NSDate())
+
+		XCTAssertEqual(tweet.mentionedUsers, ["@mentionedUser"])
+	}
+
+	func testThatATweetWithMultipleMentionedUsersHasThemWithoutTheAtSignInItsMentionedUsersInTheOrderTheyAppear() {
+		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3", publicationDate: NSDate())
+		
+		XCTAssertEqual(tweet.mentionedUsers, ["@u1", "@u2", "@u3"])
+	}
+
+	func testThatMentionedUsersOnlyAppearOnceInTheOrderTheyAppear() {
+		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3 @u2", publicationDate: NSDate())
+
+		XCTAssertEqual(tweet.mentionedUsers, ["@u1", "@u2", "@u3"])
+	}
+
+	func testThatATweetWithOneTagHasTheTag() {
+		let tweet = Tweet(author: "a", content: "Tweet with #tag", publicationDate: NSDate())
+
+		XCTAssertEqual(tweet.tags, ["#tag"])
+	}
+
+	func testThatATweetWithManyTagHasTheTagsInTheOrderAsTheAppear() {
+		let tweet = Tweet(author: "a", content: "#tag and #other tags, just #another", publicationDate: NSDate())
+		
+		XCTAssertEqual(tweet.tags, ["#tag", "#other", "#another"])
+	}
+
+	func testThatTagsAreUnique() {
+		let tweet = Tweet(author: "a", content: "#tag and #tag and another #tag", publicationDate: NSDate())
+		
+		XCTAssertEqual(tweet.tags, ["#tag"])
+	}
 }

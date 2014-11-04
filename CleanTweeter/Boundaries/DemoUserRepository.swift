@@ -8,29 +8,39 @@
 
 import Foundation
 
+func createUsers() -> [User] {
+	let dateFormatter = NSDateFormatter()
+	dateFormatter.timeStyle = .NoStyle
+	dateFormatter.dateStyle = .FullStyle
+	dateFormatter.dateFormat = "yyyy.MM.dd"
+
+	let users = [
+		User(name: "Tim Cook", followedUsers: ["Jony Ive", "Craig Ferdighi", "Eddy Cue"], tweets: [
+			Tweet(author: "Tim Cook", content: "Super awesome!", publicationDate: dateFormatter.dateFromString("2014.09.12")!),
+			Tweet(author: "Tim Cook", content: "Incredible!", publicationDate: dateFormatter.dateFromString("2014.11.3")!),
+			Tweet(author: "Tim Cook", content: "Only #Apple can do this!", publicationDate: dateFormatter.dateFromString("2014.11.2")!)
+			]),
+		User(name: "Craig Ferdighi", followedUsers: ["Tim Cook", "Jony Ive"], tweets: [
+			Tweet(author: "Craig Ferdighi", content: "Forever #hairforceone", publicationDate: dateFormatter.dateFromString("2014.10.29")!),
+			Tweet(author: "Craig Ferdighi", content: "@Jony leather UI?", publicationDate:dateFormatter.dateFromString("2014.11.1")!)
+			]),
+		User(name: "Jony Ive", followedUsers: ["Tim Cook"], tweets: [
+			Tweet(author: "Jony Ive", content: "Aluminum!", publicationDate: dateFormatter.dateFromString("2014.10.30")!),
+			Tweet(author: "Jony Ive", content: "Sire!", publicationDate: dateFormatter.dateFromString("2014.11.1")!),
+			]),
+		User(name: "Eddy Cue", followedUsers: ["Tim Cook", "Jony Ive", "Craig Ferdighi"], tweets: [
+			Tweet(author: "Eddy Cue", content: "Lets change the #iTunes UI", publicationDate: dateFormatter.dateFromString("2014.08.3")!),
+			Tweet(author: "Eddy Cue", content: "AppleTV #FTW!", publicationDate: dateFormatter.dateFromString("2012.10.3")!),
+			])
+	]
+	return users
+}
+
 class DemoUserRepository : UserRepository {
 	var store: Dictionary<String, User> = [:]
 
 	init() {
-		let users = [
-			User(name: "Tim Cook", followedUsers: ["Jony Ive", "Craig Ferdighi", "Eddy Cue"], tweets: [
-				Tweet(author: "Tim Cook", content: "Super awesome!", publicationDate: NSDate()),
-				Tweet(author: "Tim Cook", content: "Incredible!", publicationDate: NSDate()),
-				Tweet(author: "Tim Cook", content: "Only Apple can do this!", publicationDate: NSDate())
-				]),
-			User(name: "Craig Ferdighi", followedUsers: ["Tim Cook", "Jony Ive"], tweets: [
-				Tweet(author: "Craig Ferdighi", content: "Forever hairforce #1", publicationDate: NSDate())
-				]),
-			User(name: "Jony Ive", followedUsers: ["Tim Cook"], tweets: [
-				Tweet(author: "Jony Ive", content: "Aluminum!", publicationDate: NSDate()),
-				Tweet(author: "Jony Ive", content: "Sire!", publicationDate: NSDate()),
-				]),
-			User(name: "Eddy Cue", followedUsers: ["Tim Cook", "Jony Ive", "Craig Ferdighi"], tweets: [
-				Tweet(author: "Eddy Cue", content: "Lets change the iTunes UI", publicationDate: NSDate()),
-				Tweet(author: "Eddy Cue", content: "AppleTV FTW!", publicationDate: NSDate()),
-				])
-		]
-		for user in users {
+		for user in createUsers() {
 			store[user.name] = user
 		}
 	}
