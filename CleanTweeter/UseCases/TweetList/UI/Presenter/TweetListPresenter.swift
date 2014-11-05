@@ -17,10 +17,14 @@ public class TweetListPresenter : TweetListInteractorOutput, TweetListInterface 
 		self.resourceFactory = resourceFactory
 	}
 
+	// MARK: TweetListInterface
+
 	public func requestTweetsForUser(userName: String) {
 		interactor?.requestTweetsForUserName(userName)
 	}
-	
+
+	// MARK: TweetListInteractorOutput
+
 	public func foundTweets(tweetlist: [TweetListResponseModel]) {
 		let viewModel: [TweetListItem] = tweetlist.map {
 			return TweetListItem(primaryHeading: $0.user, secondaryHeading: $0.age, content: self.attributeContent($0.content))
