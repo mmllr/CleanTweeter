@@ -7,8 +7,12 @@
 //
 
 import XCTest
+#if os(iOS)
 import CleanTweeter
-
+#else
+import CleanTweeterMac
+#endif
+	
 class UserTests: XCTestCase {
 
     override func setUp() {

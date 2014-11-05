@@ -1,5 +1,5 @@
 //
-//  TweetListWireframeTests.swift
+//  TweetListWireframeTestsMac.swift
 //  CleanTweeter
 //
 //  Created by Markus Müller on 04.11.14.
@@ -9,12 +9,12 @@
 import XCTest
 import CleanTweeterMac
 
-class TweetListWireframeTests: XCTestCase {
-	var sut: TweetListWireframe!
+class TweetListWireframeMacTests: XCTestCase {
+	var sut: TweetListWireframeMac!
 	
 	override func setUp() {
 		super.setUp()
-		sut = TweetListWireframe(userRepository: UserRepositoryMock())
+		sut = TweetListWireframeMac(userRepository: UserRepositoryMock())
 	}
 	
 	func testThatItHasAWindowController() {

@@ -18,8 +18,8 @@
 		286EA6091A07DFD400681C31 /* CleanTweeterDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286EA6081A07DFD400681C31 /* CleanTweeterDependencies.swift */; };
 		286EA60E1A07E11D00681C31 /* TweetListWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286EA60D1A07E11D00681C31 /* TweetListWireframeTests.swift */; };
 		286EA6101A07E19400681C31 /* TweetListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286EA60F1A07E19400681C31 /* TweetListWireframe.swift */; };
-		2878697B1A094C770023146C /* TweetListWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2878697A1A094C770023146C /* TweetListWireframeTests.swift */; };
-		2878697D1A094CFE0023146C /* TweetListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2878697C1A094CFE0023146C /* TweetListWireframe.swift */; };
+		2878697B1A094C770023146C /* TweetListWireframeTestsMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2878697A1A094C770023146C /* TweetListWireframeTestsMac.swift */; };
+		2878697D1A094CFE0023146C /* TweetListWireframeMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2878697C1A094CFE0023146C /* TweetListWireframeMac.swift */; };
 		2878697E1A094D560023146C /* TweetListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E05E2E1A013B49006FCEFD /* TweetListInteractor.swift */; };
 		2878697F1A094D590023146C /* TweetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BC71A07E3F500A9ADD9 /* TweetListPresenter.swift */; };
 		287869801A094D760023146C /* TweetListInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EC7BE71A013D2200A0564A /* TweetListInteractorInput.swift */; };
@@ -43,6 +43,8 @@
 		287869971A0953D10023146C /* TweetListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BC51A07E3BE00A9ADD9 /* TweetListPresenterTests.swift */; };
 		287B64B11A07B056008E7821 /* TweetListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B64B01A07B056008E7821 /* TweetListTableViewControllerTests.swift */; };
 		287B64B31A07B180008E7821 /* TweetListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B64B21A07B180008E7821 /* TweetListTableViewController.swift */; };
+		28AAF2A41A09B057007DA604 /* TweetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859892E1A0421CC0050D78A /* TweetTests.swift */; };
+		28AAF2A51A09B05A007DA604 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285989301A0421D90050D78A /* UserTests.swift */; };
 		28BCACEB1A09564600D1E787 /* CleanTweeterDependenciesMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BCACEA1A09564600D1E787 /* CleanTweeterDependenciesMac.swift */; };
 		28D55BC61A07E3BE00A9ADD9 /* TweetListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BC51A07E3BE00A9ADD9 /* TweetListPresenterTests.swift */; };
 		28D55BC81A07E3F500A9ADD9 /* TweetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BC71A07E3F500A9ADD9 /* TweetListPresenter.swift */; };
@@ -101,8 +103,8 @@
 		286EA6081A07DFD400681C31 /* CleanTweeterDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanTweeterDependencies.swift; sourceTree = "<group>"; };
 		286EA60D1A07E11D00681C31 /* TweetListWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframeTests.swift; sourceTree = "<group>"; };
 		286EA60F1A07E19400681C31 /* TweetListWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframe.swift; sourceTree = "<group>"; };
-		2878697A1A094C770023146C /* TweetListWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframeTests.swift; sourceTree = "<group>"; };
-		2878697C1A094CFE0023146C /* TweetListWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframe.swift; sourceTree = "<group>"; };
+		2878697A1A094C770023146C /* TweetListWireframeTestsMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframeTestsMac.swift; sourceTree = "<group>"; };
+		2878697C1A094CFE0023146C /* TweetListWireframeMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWireframeMac.swift; sourceTree = "<group>"; };
 		2878698B1A094DE20023146C /* OSXResourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSXResourceFactory.swift; sourceTree = "<group>"; };
 		287869931A094F850023146C /* TweetListWindowControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWindowControllerTests.swift; sourceTree = "<group>"; };
 		287869951A094FBA0023146C /* TweetListWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetListWindowController.swift; sourceTree = "<group>"; };
@@ -252,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				287869791A094C490023146C /* Tests */,
-				2878697C1A094CFE0023146C /* TweetListWireframe.swift */,
+				2878697C1A094CFE0023146C /* TweetListWireframeMac.swift */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -260,7 +262,7 @@
 		287869791A094C490023146C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2878697A1A094C770023146C /* TweetListWireframeTests.swift */,
+				2878697A1A094C770023146C /* TweetListWireframeTestsMac.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -296,10 +298,10 @@
 		287B64AD1A07ADB2008E7821 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				287869911A094F490023146C /* Mac */,
-				287B64AE1A07ADC6008E7821 /* iOS */,
 				28FD527B1A07CBE60077CE96 /* TweetListItem.swift */,
 				28FD527D1A07CC3F0077CE96 /* TweetListView.swift */,
+				287869911A094F490023146C /* Mac */,
+				287B64AE1A07ADC6008E7821 /* iOS */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -743,7 +745,7 @@
 				287869841A094D8A0023146C /* TweetListItem.swift in Sources */,
 				2878698D1A094E0B0023146C /* DemoUserRepository.swift in Sources */,
 				287869851A094D8D0023146C /* TweetListView.swift in Sources */,
-				2878697D1A094CFE0023146C /* TweetListWireframe.swift in Sources */,
+				2878697D1A094CFE0023146C /* TweetListWireframeMac.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,10 +754,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				287869971A0953D10023146C /* TweetListPresenterTests.swift in Sources */,
+				28AAF2A41A09B057007DA604 /* TweetTests.swift in Sources */,
 				2878698F1A094E240023146C /* TweetListInteractorTests.swift in Sources */,
 				287869941A094F850023146C /* TweetListWindowControllerTests.swift in Sources */,
+				28AAF2A51A09B05A007DA604 /* UserTests.swift in Sources */,
 				287869901A094E2F0023146C /* Array+MKMExtensionsTests.swift in Sources */,
-				2878697B1A094C770023146C /* TweetListWireframeTests.swift in Sources */,
+				2878697B1A094C770023146C /* TweetListWireframeTestsMac.swift in Sources */,
 				2878698E1A094E200023146C /* UserRepositoryMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

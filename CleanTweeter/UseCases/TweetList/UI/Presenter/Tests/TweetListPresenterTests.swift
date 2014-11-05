@@ -24,7 +24,7 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
     override func setUp() {
         super.setUp()
 
-		#if os(iOS)
+#if os(iOS)
 		let resourceFactory = MobileResourceFactory()
 #else
 		let resourceFactory = OSXResourceFactory()

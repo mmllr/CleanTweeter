@@ -7,7 +7,11 @@
 //
 
 import XCTest
+#if os(iOS)
 import CleanTweeter
+#else
+import CleanTweeterMac
+#endif
 
 class TweetTests: XCTestCase {
 

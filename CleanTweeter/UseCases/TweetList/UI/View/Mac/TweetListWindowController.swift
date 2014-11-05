@@ -31,9 +31,9 @@ public class TweetListWindowController : NSWindowController, TweetListView {
 	func tableView(tableView: NSTableView!, viewForTableColumn: NSTableColumn!, row: Int) -> NSView! {
 		let view = tableView.makeViewWithIdentifier( "HeadingContentCell", owner: self) as HeadingContentCell
 
-		view.primaryHeadingLabel!.stringValue = viewModel[row].primaryHeading
-		view.secondaryContentLabel!.stringValue = viewModel[row].secondaryHeading
-		view.contentLabel!.attributedStringValue = viewModel[row].content
+		view.primaryHeadingLabel.stringValue = viewModel[row].primaryHeading
+		view.secondaryHeadingLabel.stringValue = viewModel[row].secondaryHeading
+		view.contentLabel.attributedStringValue = viewModel[row].content
 		return view
 	}
 }

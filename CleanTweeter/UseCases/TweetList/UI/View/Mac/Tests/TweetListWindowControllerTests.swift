@@ -23,6 +23,7 @@ class TweetListWindowControllerTests: XCTestCase, TweetListInterface {
         super.setUp()
 		sut = TweetListWindowController(windowNibName: "TweetListWindow")
 		sut.moduleInterface = self
+		sut.loadWindow()
     }
 
 	// MARK: TweetListInterface
@@ -42,9 +43,17 @@ class TweetListWindowControllerTests: XCTestCase, TweetListInterface {
 	}
 
 	func testThatItLoadsTheViewModel() {
-		sut?.updateViewModel(self.viewModel)
-		
-		XCTAssertEqual(sut.tableView!.numberOfRows, self.viewModel.count)
+		sut.updateViewModel(self.viewModel)
+
+		let aTableView: NSTableView! = sut.tableView
+		for (index, item) in enumerate(viewModel) {
+
+			let headingCell = aTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as HeadingContentCell!
+
+			XCTAssertEqual(headingCell.primaryHeadingLabel.stringValue, viewModel[index].primaryHeading)
+			XCTAssertEqual(headingCell.secondaryHeadingLabel.stringValue, viewModel[index].secondaryHeading)
+			XCTAssertEqual(headingCell.contentLabel.attributedStringValue, viewModel[index].content)
+		}
 	}
 
 }

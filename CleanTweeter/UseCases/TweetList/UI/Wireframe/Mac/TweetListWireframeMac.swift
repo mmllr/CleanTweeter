@@ -1,5 +1,5 @@
 //
-//  TweetListWireframe.swift
+//  TweetListWireframeMac.swift
 //  CleanTweeter
 //
 //  Created by Markus Müller on 04.11.14.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TweetListWireframe {
+public class TweetListWireframeMac {
 	public let windowController: TweetListWindowController
 	public let interactor: TweetListInteractor
 	public let presenter: TweetListPresenter

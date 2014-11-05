@@ -11,11 +11,11 @@ import Cocoa
 
 class CleanTweeterDependenciesMac {
 	let userRepository: DemoUserRepository
-	let tweetListWireframe: TweetListWireframe
+	let tweetListWireframe: TweetListWireframeMac
 
 	init() {
 		userRepository = DemoUserRepository()
-		tweetListWireframe = TweetListWireframe(userRepository: userRepository)
+		tweetListWireframe = TweetListWireframeMac(userRepository: userRepository)
 	}
 
 	func showWindow() {

@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TweetListWindowController">
             <connections>
-                <outlet property="tableView" destination="AMc-0b-hfK" id="xwQ-rH-FLg"/>
+                <outlet property="tableView" destination="AMc-0b-hfK" id="wH5-BS-fIh"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -27,7 +27,6 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" rowSizeStyle="automatic" viewBased="YES" id="AMc-0b-hfK">
-                                    <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,7 +83,7 @@
                                                     <connections>
                                                         <outlet property="contentLabel" destination="1jZ-XT-3Af" id="WDV-Rf-8XD"/>
                                                         <outlet property="primaryHeadingLabel" destination="dsy-xV-T4i" id="FAh-GI-TpG"/>
-                                                        <outlet property="secondaryContentLabel" destination="Um8-5u-qTn" id="i98-Eq-sk7"/>
+                                                        <outlet property="secondaryHeadingLabel" destination="Um8-5u-qTn" id="Rxy-Iu-OXa"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
