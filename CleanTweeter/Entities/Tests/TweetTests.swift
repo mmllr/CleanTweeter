@@ -90,13 +90,13 @@ class TweetTests: XCTestCase {
 		XCTAssertGreaterThan(t1, t2)
 	}
 
-	func testThatATweetWithOneMentionedUserHasTheUserWithoutTheAtSignInItsMentionedUsers() {
+	func testThatATweetWithOneMentionedUserHasTheUserInItsMentionedUsers() {
 		let tweet = Tweet(author: "a", content: "@mentionedUser", publicationDate: NSDate())
 
 		XCTAssertEqual(tweet.mentionedUsers, ["@mentionedUser"])
 	}
 
-	func testThatATweetWithMultipleMentionedUsersHasThemWithoutTheAtSignInItsMentionedUsersInTheOrderTheyAppear() {
+	func testThatATweetWithMultipleMentionedUsersHasThemInItsMentionedUsersInTheOrderTheyAppear() {
 		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3", publicationDate: NSDate())
 		
 		XCTAssertEqual(tweet.mentionedUsers, ["@u1", "@u2", "@u3"])

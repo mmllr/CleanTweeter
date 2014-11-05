@@ -15,7 +15,6 @@ import CleanTweeterMac
 import Cocoa
 #endif
 
-
 class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInput {
 	var sut: TweetListPresenter!
 	var viewModel: [TweetListItem] = []

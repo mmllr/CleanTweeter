@@ -45,10 +45,8 @@ class TweetListWindowControllerTests: XCTestCase, TweetListInterface {
 	func testThatItLoadsTheViewModel() {
 		sut.updateViewModel(self.viewModel)
 
-		let aTableView: NSTableView! = sut.tableView
 		for (index, item) in enumerate(viewModel) {
-
-			let headingCell = aTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as HeadingContentCell!
+			let headingCell = sut.tableView!.viewAtColumn(0, row: index, makeIfNecessary: true) as HeadingContentCell!
 
 			XCTAssertEqual(headingCell.primaryHeadingLabel.stringValue, viewModel[index].primaryHeading)
 			XCTAssertEqual(headingCell.secondaryHeadingLabel.stringValue, viewModel[index].secondaryHeading)
