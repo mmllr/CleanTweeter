@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class User {
+public struct User {
 	public let name: String
 	public let followedUsers: [String]
 	public let tweets: [Tweet]

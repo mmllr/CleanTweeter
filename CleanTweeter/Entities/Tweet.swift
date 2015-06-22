@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Tweet : Comparable {
+public struct Tweet : Comparable {
 	public let author: String
 	public let content: String
 	public let publicationDate: NSDate
