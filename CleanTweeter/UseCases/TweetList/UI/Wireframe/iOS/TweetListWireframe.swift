@@ -15,7 +15,7 @@ public class TweetListWireframe {
 	public let presenter: TweetListPresenter
 
 	public init(userRepository: UserRepository) {
-		viewController = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as TweetListTableViewController
+		viewController = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as! TweetListTableViewController
 
 		interactor = TweetListInteractor(repository: userRepository)
 		presenter = TweetListPresenter(resourceFactory: MobileResourceFactory())

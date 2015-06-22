@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationWillTerminate(aNotification: NSNotification) {
 	}
 
-	func applicationShouldTerminateAfterLastWindowClosed(theApplication: NSApplication!) -> Bool {
+	func applicationShouldTerminateAfterLastWindowClosed(theApplication: NSApplication) -> Bool {
 		return true
 	}
 }

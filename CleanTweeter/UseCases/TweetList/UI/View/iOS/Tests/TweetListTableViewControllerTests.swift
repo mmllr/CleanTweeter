@@ -47,12 +47,12 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	func testThatItLoadsTheViewModel() {
 		sut?.updateViewModel(self.viewModel)
 
-		for (index, item) in enumerate(viewModel) {
-			let headingCell = sut?.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as HeadingContentCell
+		for (index, item) in (viewModel).enumerate() {
+			let headingCell = sut?.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as! HeadingContentCell
 
-			XCTAssertEqual(headingCell.primaryHeadingLabel.text!, viewModel[index].primaryHeading)
-			XCTAssertEqual(headingCell.secondaryContentLabel.text!, viewModel[index].secondaryHeading)
-			XCTAssertEqual(headingCell.contentLabel.attributedText!, viewModel[index].content)
+			XCTAssertEqual(headingCell.primaryHeadingLabel.text!, item.primaryHeading)
+			XCTAssertEqual(headingCell.secondaryContentLabel.text!, item.secondaryHeading)
+			XCTAssertEqual(headingCell.contentLabel.attributedText!, item.content)
 		}
 	}
 

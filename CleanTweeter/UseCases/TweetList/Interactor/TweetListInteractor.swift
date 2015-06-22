@@ -17,7 +17,7 @@ public class TweetListInteractor: TweetListInteractorInput {
 		self.repository = repository
 		let formatter = NSDateComponentsFormatter()
 		formatter.unitsStyle = .Abbreviated
-		formatter.allowedUnits = .CalendarUnitYear | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute
+		formatter.allowedUnits = [.Year, .Day, .Hour, .Minute]
 		formatter.maximumUnitCount = 1
 		self.dateFormatter = formatter
 	}
@@ -31,7 +31,7 @@ public class TweetListInteractor: TweetListInteractorInput {
 				return []
 			})
 
-			let sortedTweets = sorted(user.tweets + followedUserTweets)
+			let sortedTweets = (user.tweets + followedUserTweets).sort()
 
 			let result: [TweetListResponseModel] = sortedTweets.map {
 				TweetListResponseModel(user: $0.author, content: $0.content, age: self.dateFormatter.stringFromDate($0.publicationDate, toDate: NSDate())!)

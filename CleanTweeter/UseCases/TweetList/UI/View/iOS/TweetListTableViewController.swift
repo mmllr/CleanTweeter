@@ -38,7 +38,7 @@ public class TweetListTableViewController: UITableViewController, TweetListView 
 	}
 
 	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let contentCell = tableView.dequeueReusableCellWithIdentifier("HeadingContentCell") as HeadingContentCell!
+		let contentCell = tableView.dequeueReusableCellWithIdentifier("HeadingContentCell") as! HeadingContentCell!
 		contentCell.primaryHeadingLabel.text = self.viewModel[indexPath.row].primaryHeading
 		contentCell.secondaryContentLabel.text = self.viewModel[indexPath.row].secondaryHeading
 		contentCell.contentLabel.attributedText = self.viewModel[indexPath.row].content

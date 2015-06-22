@@ -15,7 +15,7 @@ public class User {
 
 	public init(name: String, followedUsers: [String], tweets: [Tweet]) {
 		self.name = name
-		self.followedUsers = sorted(unique(followedUsers)).filter {
+		self.followedUsers = unique(followedUsers).sort().filter {
 			$0 != name
 		}
 		self.tweets = tweets
