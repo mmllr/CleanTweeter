@@ -15,16 +15,6 @@ import CleanTweeterMac
 
 class Array_MKMExtensionsTests: XCTestCase {
 
-	func testThatAnArrayOfArraysCanBeFlattened() {
-		let arrayOfArraysOfNumbers = [[1, 2, 3], [4, 5]]
-
-		XCTAssertEqual(flatten(arrayOfArraysOfNumbers), [1, 2, 3, 4, 5])
-
-		let arrayOfArrayOfStrings = [["one", "two"], ["three"], ["four", "five", "six"]]
-
-		XCTAssertEqual(flatten(arrayOfArrayOfStrings), ["one", "two", "three", "four", "five", "six"])
-	}
-
 	func testThatAnArrayCanBeUniqued() {
 		let array = [1, 1, 2, 4, 6, 7, 6, 8, 8, 9]
 
