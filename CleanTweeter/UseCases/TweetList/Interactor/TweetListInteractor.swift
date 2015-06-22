@@ -24,14 +24,14 @@ public class TweetListInteractor: TweetListInteractorInput {
 
 	public func requestTweetsForUserName(userName:String) {
 		if let user = self.repository.findUser(userName) {
-			let followedUserTweets: [Tweet] = flatten(user.followedUsers.map {
+			let followedUserTweets: [[Tweet]] = user.followedUsers.map {
 				if let follower = self.repository.findUser($0) {
 					return follower.tweets
 				}
 				return []
-			})
+			}
 
-			let sortedTweets = (user.tweets + followedUserTweets).sort()
+			let sortedTweets = (user.tweets + followedUserTweets.flatMap{ $0 }).sort()
 
 			let result: [TweetListResponseModel] = sortedTweets.map {
 				TweetListResponseModel(user: $0.author, content: $0.content, age: self.dateFormatter.stringFromDate($0.publicationDate, toDate: NSDate())!)
