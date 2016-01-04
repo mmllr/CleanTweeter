@@ -36,11 +36,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkO-4a-nJg">
-                                <rect key="frame" x="20" y="80" width="560" height="300"/>
+                                <rect key="frame" x="20" y="80" width="560" height="512"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="f5c-KD-nvU"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
                                 <connections>
@@ -48,7 +45,7 @@
                                 </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-5o-utG">
-                                <rect key="frame" x="285" y="388" width="31" height="14.5"/>
+                                <rect key="frame" x="549" y="42" width="31" height="14.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,14 +53,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="O2b-5o-utG" secondAttribute="trailing" id="2rt-u9-jbR"/>
+                            <constraint firstItem="jC2-Kb-Jvj" firstAttribute="top" secondItem="O2b-5o-utG" secondAttribute="bottom" constant="8" id="Cwx-lh-l6X"/>
                             <constraint firstItem="kkO-4a-nJg" firstAttribute="top" secondItem="AFG-Lz-yd9" secondAttribute="bottom" constant="10" id="D8I-uq-t4Z"/>
                             <constraint firstItem="AFG-Lz-yd9" firstAttribute="centerX" secondItem="dcx-RT-YXP" secondAttribute="centerX" id="F2N-AO-S1q"/>
                             <constraint firstItem="O2b-5o-utG" firstAttribute="top" secondItem="kkO-4a-nJg" secondAttribute="bottom" constant="8" id="FNy-lO-qwl"/>
                             <constraint firstItem="kkO-4a-nJg" firstAttribute="leading" secondItem="dcx-RT-YXP" secondAttribute="leadingMargin" id="PJv-fr-GJf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kkO-4a-nJg" secondAttribute="trailing" id="fRg-hG-KU2"/>
                             <constraint firstItem="AFG-Lz-yd9" firstAttribute="top" secondItem="l7r-Lr-49i" secondAttribute="bottom" constant="10" id="gFL-yX-1uI"/>
+                            <constraint firstItem="O2b-5o-utG" firstAttribute="centerY" secondItem="AFG-Lz-yd9" secondAttribute="centerY" id="gH4-va-ed9"/>
                             <constraint firstItem="O2b-5o-utG" firstAttribute="centerX" secondItem="dcx-RT-YXP" secondAttribute="centerX" id="mt6-5Z-rcT"/>
+                            <constraint firstItem="jC2-Kb-Jvj" firstAttribute="top" secondItem="kkO-4a-nJg" secondAttribute="bottom" constant="8" id="t8T-m6-qgY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FNy-lO-qwl"/>
+                                <exclude reference="mt6-5Z-rcT"/>
+                                <exclude reference="Cwx-lh-l6X"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
@@ -74,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GCp-7t-7Eo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="534"/>
+            <point key="canvasLocation" x="-16" y="534"/>
         </scene>
     </scenes>
     <resources>
