@@ -8,8 +8,9 @@
 
 import UIKit
 
-public class HeadingContentCell: UITableViewCell {
-	@IBOutlet public weak var primaryHeadingLabel: UILabel!
-	@IBOutlet public weak var contentLabel: UILabel!
-	@IBOutlet public weak var secondaryContentLabel: UILabel!
+class HeadingContentCell: UITableViewCell {
+	@IBOutlet weak var primaryHeadingLabel: UILabel!
+	@IBOutlet weak var contentLabel: UILabel!
+	@IBOutlet weak var secondaryContentLabel: UILabel!
+	@IBOutlet weak var circularImageView: CircularImageView!
 }

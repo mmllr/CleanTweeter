@@ -42,6 +42,7 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 		contentCell.primaryHeadingLabel.text = self.viewModel[indexPath.row].primaryHeading
 		contentCell.secondaryContentLabel.text = self.viewModel[indexPath.row].secondaryHeading
 		contentCell.contentLabel.attributedText = self.viewModel[indexPath.row].content
+		contentCell.circularImageView.image = UIImage(named: self.viewModel[indexPath.row].imageName)!
 		return contentCell
 	}
 

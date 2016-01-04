@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pwg-bJ-8lD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pwg-bJ-8lD">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8121.17"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9531"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-qe-Wmc">
-                                            <rect key="frame" x="8" y="8" width="52" height="19.5"/>
+                                            <rect key="frame" x="56" y="8" width="52" height="19.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -34,25 +34,52 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wus-j3-IfH" customClass="CircularImageView" customModule="CleanTweeter" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="PNi-qW-JES"/>
+                                                <constraint firstAttribute="width" constant="40" id="iNZ-ms-uQp"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="placeholder"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzx-zD-lAq">
-                                            <rect key="frame" x="8" y="27.5" width="572.5" height="21.5"/>
+                                            <rect key="frame" x="56" y="27" width="525" height="21.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Wus-j3-IfH" firstAttribute="top" secondItem="qLM-aY-2DF" secondAttribute="topMargin" id="0Nn-Co-1xb"/>
                                         <constraint firstItem="gzx-zD-lAq" firstAttribute="bottom" secondItem="qLM-aY-2DF" secondAttribute="bottomMargin" id="0Pj-GH-62c"/>
                                         <constraint firstItem="RxC-qe-Wmc" firstAttribute="bottom" secondItem="gzx-zD-lAq" secondAttribute="top" id="0ek-Da-zC2"/>
                                         <constraint firstItem="RxC-qe-Wmc" firstAttribute="top" secondItem="qLM-aY-2DF" secondAttribute="topMargin" id="3RN-8v-uNO"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="gzx-zD-lAq" secondAttribute="trailing" constant="11" id="B9L-cl-m6i"/>
+                                        <constraint firstItem="Wus-j3-IfH" firstAttribute="leading" secondItem="qLM-aY-2DF" secondAttribute="leadingMargin" id="FGr-iA-Jma"/>
+                                        <constraint firstItem="RxC-qe-Wmc" firstAttribute="leading" secondItem="Wus-j3-IfH" secondAttribute="trailing" constant="8" id="GUe-Dp-nPe"/>
                                         <constraint firstItem="XOZ-H6-X9Z" firstAttribute="top" secondItem="qLM-aY-2DF" secondAttribute="topMargin" id="Xi9-F2-69K"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="XOZ-H6-X9Z" secondAttribute="trailing" constant="11" id="gpe-XF-0ea"/>
+                                        <constraint firstItem="XOZ-H6-X9Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RxC-qe-Wmc" secondAttribute="trailing" constant="8" id="j5V-RK-O2E"/>
                                         <constraint firstItem="gzx-zD-lAq" firstAttribute="leading" secondItem="RxC-qe-Wmc" secondAttribute="leading" id="qMO-NM-jbO"/>
                                         <constraint firstItem="RxC-qe-Wmc" firstAttribute="leading" secondItem="qLM-aY-2DF" secondAttribute="leadingMargin" id="xjp-U2-yeN"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="xjp-U2-yeN"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="circularImageView" destination="Wus-j3-IfH" id="ywG-3N-WSe"/>
                                     <outlet property="contentLabel" destination="gzx-zD-lAq" id="r0w-0P-5pT"/>
                                     <outlet property="primaryHeadingLabel" destination="RxC-qe-Wmc" id="xya-Sy-Wqi"/>
                                     <outlet property="secondaryContentLabel" destination="XOZ-H6-X9Z" id="V5H-ZT-zDZ"/>
@@ -71,4 +98,7 @@
             <point key="canvasLocation" x="971" y="183"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="16" height="16"/>
+    </resources>
 </document>
