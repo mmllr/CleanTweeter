@@ -54,6 +54,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 			XCTAssertEqual(headingCell.secondaryContentLabel.text!, item.secondaryHeading)
 			XCTAssertEqual(headingCell.contentLabel.attributedText!, item.content)
 			XCTAssertNotNil(headingCell.circularImageView)
+			XCTAssertEqual(headingCell.circularImageView.accessibilityLabel, item.primaryHeading)
 		}
 	}
 
