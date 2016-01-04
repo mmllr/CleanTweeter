@@ -8,16 +8,18 @@
 
 import Foundation
 
-public struct User {
-	public let name: String
-	public let followedUsers: [String]
-	public let tweets: [Tweet]
+struct User {
+	let name: String
+	let followedUsers: [String]
+	let tweets: [Tweet]
+	let avatar: String
 
-	public init(name: String, followedUsers: [String], tweets: [Tweet]) {
+	init(name: String, followedUsers: [String], tweets: [Tweet], avatar: String = "") {
 		self.name = name
-		self.followedUsers = unique(followedUsers).sort().filter {
+		self.followedUsers = Set(followedUsers).filter {
 			$0 != name
-		}
+		}.sort()
 		self.tweets = tweets
+		self.avatar = avatar
 	}
 }

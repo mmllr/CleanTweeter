@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol TweetListInteractorOutput {
+protocol TweetListInteractorOutput {
 	func foundTweets(tweetlist: [TweetListResponseModel])
 }

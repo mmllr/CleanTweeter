@@ -8,16 +8,16 @@
 
 import UIKit
 import XCTest
-import CleanTweeter
+@testable import CleanTweeter
 
 class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	var sut: TweetListTableViewController!
 	var tableView: UITableView!
 	var requestedUser: String = ""
 	var viewModel: [TweetListItem] = [
-		TweetListItem(primaryHeading: "Item 1 - 1.Heading", secondaryHeading: "Item 1 - 2.Heading", content: NSAttributedString(string: "Item 1 - content")),
-		TweetListItem(primaryHeading: "Item 2 - 1.Heading", secondaryHeading: "Item 2 - 2.Heading", content: NSAttributedString(string: "Item 2 - content")),
-		TweetListItem(primaryHeading: "Item 3 - 1.Heading", secondaryHeading: "Item 3 - 2.Heading", content: NSAttributedString(string: "Item 3 - content"))
+		TweetListItem(primaryHeading: "Item 1 - 1.Heading", secondaryHeading: "Item 1 - 2.Heading", content: NSAttributedString(string: "Item 1 - content"), imageName: "placeholder"),
+		TweetListItem(primaryHeading: "Item 2 - 1.Heading", secondaryHeading: "Item 2 - 2.Heading", content: NSAttributedString(string: "Item 2 - content"), imageName: "placeholder"),
+		TweetListItem(primaryHeading: "Item 3 - 1.Heading", secondaryHeading: "Item 3 - 2.Heading", content: NSAttributedString(string: "Item 3 - content"), imageName: "placeholder")
 	]
 
     override func setUp() {

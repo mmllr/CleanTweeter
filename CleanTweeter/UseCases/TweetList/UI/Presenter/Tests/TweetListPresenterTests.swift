@@ -8,10 +8,10 @@
 
 import XCTest
 #if os(iOS)
-import CleanTweeter
+@testable import CleanTweeter
 import UIKit
 #else
-import CleanTweeterMac
+@testable import CleanTweeterMac
 import Cocoa
 #endif
 
@@ -19,15 +19,15 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 	var sut: TweetListPresenter!
 	var viewModel: [TweetListItem] = []
 	var requestedUser: String = ""
+#if os(iOS)
+	let resourceFactory = MobileResourceFactory()
+#else
+	let resourceFactory = OSXResourceFactory()
+#endif
 
     override func setUp() {
         super.setUp()
 
-#if os(iOS)
-		let resourceFactory = MobileResourceFactory()
-#else
-		let resourceFactory = OSXResourceFactory()
-#endif
 		sut = TweetListPresenter(resourceFactory: resourceFactory)
 		sut.view = self
 		sut.interactor = self
@@ -49,17 +49,17 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 	
 	func testThatItTransformsAResponseModelIntoToAViewModelAndUpdatesTheView() {
 		let response = [
-			TweetListResponseModel(user: "u1", content: "c1", age: "a1"),
-			TweetListResponseModel(user: "u2", content: "c2", age: "a2"),
-			TweetListResponseModel(user: "u3", content: "c3", age: "a3")
+			TweetListResponseModel(user: "u1", content: "c1", age: "a1", avatar: "gravatar"),
+			TweetListResponseModel(user: "u2", content: "c2", age: "a2", avatar: ""),
+			TweetListResponseModel(user: "u3", content: "c3", age: "a3", avatar: "")
 		]
 
 		sut.foundTweets(response)
 
 		XCTAssertEqual(self.viewModel, [
-			TweetListItem(primaryHeading: "u1", secondaryHeading: "a1", content: NSAttributedString(string: "c1")),
-			TweetListItem(primaryHeading: "u2", secondaryHeading: "a2", content: NSAttributedString(string: "c2")),
-			TweetListItem(primaryHeading: "u3", secondaryHeading: "a3", content: NSAttributedString(string: "c3"))
+			TweetListItem(primaryHeading: "u1", secondaryHeading: "a1", content: NSAttributedString(string: "c1"), imageName: "gravatar"),
+			TweetListItem(primaryHeading: "u2", secondaryHeading: "a2", content: NSAttributedString(string: "c2"), imageName: "placeholder"),
+			TweetListItem(primaryHeading: "u3", secondaryHeading: "a3", content: NSAttributedString(string: "c3"), imageName: "placeholder")
 			])
 	}
 
@@ -73,7 +73,7 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 		let content = "@mention plain text #tag"
 
 		let response = [
-			TweetListResponseModel(user: "u1", content: content, age: "a1")
+			TweetListResponseModel(user: "u1", content: content, age: "a1", avatar: "")
 		]
 
 		sut.foundTweets(response)

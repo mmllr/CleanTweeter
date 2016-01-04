@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Tweet : Comparable {
-	public let author: String
-	public let content: String
-	public let publicationDate: NSDate
-	public let mentionedUsers: [String]
-	public let tags: [String]
+struct Tweet : Comparable {
+	let author: String
+	let content: String
+	let publicationDate: NSDate
+	let mentionedUsers: [String]
+	let tags: [String]
 
-	public init(author: String, content: String, publicationDate: NSDate = NSDate()) {
+	init(author: String, content: String, publicationDate: NSDate = NSDate()) {
 		self.author = author
 		self.content = content.characters.count > 160 ? content.substringToIndex(content.startIndex.advancedBy(160)) : content
 		self.publicationDate = publicationDate.timeIntervalSinceNow > 0 ? NSDate() : publicationDate
@@ -40,7 +40,7 @@ func findTags(text: String) -> [String] {
 		})
 }
 
-public func ==(lhs: Tweet, rhs: Tweet) -> Bool {
+func ==(lhs: Tweet, rhs: Tweet) -> Bool {
 	if lhs.author != rhs.author {
 		return false
 	}
@@ -50,6 +50,6 @@ public func ==(lhs: Tweet, rhs: Tweet) -> Bool {
 	return lhs.publicationDate.isEqualToDate(rhs.publicationDate)
 }
 
-public func <(lhs: Tweet, rhs: Tweet) -> Bool {
+func <(lhs: Tweet, rhs: Tweet) -> Bool {
 	return lhs.publicationDate.compare(rhs.publicationDate) == .OrderedDescending
 }

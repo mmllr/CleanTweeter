@@ -8,9 +8,9 @@
 
 import XCTest
 #if os(iOS)
-import CleanTweeter
+@testable import CleanTweeter
 #else
-import CleanTweeterMac
+@testable import CleanTweeterMac
 #endif
 	
 class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
@@ -61,7 +61,7 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		
 		sut!.requestTweetsForUserName("u")
 
-		XCTAssertEqual(self.response, [TweetListResponseModel(user: "u", content: "tweet", age: "0m")])
+		XCTAssertEqual(self.response, [TweetListResponseModel(user: "u", content: "tweet", age: "0m", avatar: "")])
 	}
 
 	func testThatManyTweetsFromOneUserInTheRepositoryResultsInThatUsersTweetsOrderedByDate() {
@@ -75,9 +75,9 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		sut!.requestTweetsForUserName("u")
 
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "u", content: "t1", age: "1m"),
-			TweetListResponseModel(user: "u", content: "t3", age: "2m"),
-			TweetListResponseModel(user: "u", content: "t2", age: "3m")
+			TweetListResponseModel(user: "u", content: "t1", age: "1m", avatar: ""),
+			TweetListResponseModel(user: "u", content: "t3", age: "2m", avatar: ""),
+			TweetListResponseModel(user: "u", content: "t2", age: "3m", avatar: "")
 			]
 		)
 	}
@@ -130,8 +130,7 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		let follower = User(name: "f", followedUsers: [], tweets:[
 			Tweet(author: "f", content: "t1", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 1, seconds: 0)),
 			Tweet(author: "f", content: "t2", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 3, seconds: 0))
-			]
-		)
+			], avatar: "avatar")
 
 		self.repositoryMock.givenTheUsers([
 			User(name: "u", followedUsers: ["f"], tweets:[]),
@@ -142,8 +141,8 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		sut!.requestTweetsForUserName("u")
 		
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "f", content: "t1", age: "1m"),
-			TweetListResponseModel(user: "f", content: "t2", age: "3m")
+			TweetListResponseModel(user: "f", content: "t1", age: "1m", avatar: "avatar"),
+			TweetListResponseModel(user: "f", content: "t2", age: "3m", avatar: "avatar")
 			]
 		)
 	}
@@ -153,20 +152,20 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 			User(name: "u", followedUsers: ["f"], tweets:[
 				Tweet(author: "u", content: "u t1", publicationDate:self.givenADateDaysAgo(10, hours: 0, minutes: 0, seconds: 0)),
 				Tweet(author: "u", content: "u t2", publicationDate: self.givenADateDaysAgo(0, hours: 2, minutes: 0, seconds: 0))
-				]),
+				], avatar: "u-avatar"),
 			User(name: "f", followedUsers: [], tweets:[
 				Tweet(author: "f", content: "f t1", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 5, seconds: 0)),
 				Tweet(author: "f", content: "f t2", publicationDate:self.givenADateDaysAgo(0, hours: 10, minutes: 0, seconds: 0))
-				])
+				], avatar: "f-avatar")
 			])
 
 		sut!.requestTweetsForUserName("u")
 		
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "f", content: "f t1", age: "5m"),
-			TweetListResponseModel(user: "u", content: "u t2", age: "2h"),
-			TweetListResponseModel(user: "f", content: "f t2", age: "10h"),
-			TweetListResponseModel(user: "u", content: "u t1", age: "10d")
+			TweetListResponseModel(user: "f", content: "f t1", age: "5m", avatar: "f-avatar"),
+			TweetListResponseModel(user: "u", content: "u t2", age: "2h", avatar: "u-avatar"),
+			TweetListResponseModel(user: "f", content: "f t2", age: "10h", avatar: "f-avatar"),
+			TweetListResponseModel(user: "u", content: "u t1", age: "10d", avatar: "u-avatar")
 			]
 		)
 	}

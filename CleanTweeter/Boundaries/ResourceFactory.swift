@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol ResourceFactory {
+protocol ResourceFactory {
 	var highlightingAttribute: (String, AnyObject) { get }
 }

@@ -8,19 +8,14 @@
 
 import Foundation
 
-public struct TweetListResponseModel : Equatable {
-	public let user: String
-	public let content: String
-	public let age: String
-
-	public init(user: String, content: String, age: String) {
-		self.user = user
-		self.content = content
-		self.age = age
-	}
+struct TweetListResponseModel : Equatable {
+	let user: String
+	let content: String
+	let age: String
+	let avatar: String
 }
 
-public func ==(lhs: TweetListResponseModel, rhs: TweetListResponseModel) -> Bool {
+func ==(lhs: TweetListResponseModel, rhs: TweetListResponseModel) -> Bool {
 	if lhs.user != rhs.user {
 		return false
 	}
@@ -30,7 +25,7 @@ public func ==(lhs: TweetListResponseModel, rhs: TweetListResponseModel) -> Bool
 	if lhs.age != rhs.age {
 		return false
 	}
-	return true
+	return lhs.avatar == rhs.avatar
 }
 
 

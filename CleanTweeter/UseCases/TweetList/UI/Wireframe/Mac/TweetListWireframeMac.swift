@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class TweetListWireframeMac {
-	public let windowController: TweetListWindowController
-	public let interactor: TweetListInteractor
-	public let presenter: TweetListPresenter
+class TweetListWireframeMac {
+	let windowController: TweetListWindowController
+	let interactor: TweetListInteractor
+	let presenter: TweetListPresenter
 	
-	public init(userRepository: UserRepository) {
+	init(userRepository: UserRepository) {
 		interactor = TweetListInteractor(repository: userRepository)
 		presenter = TweetListPresenter(resourceFactory: OSXResourceFactory())
 		interactor.output = presenter

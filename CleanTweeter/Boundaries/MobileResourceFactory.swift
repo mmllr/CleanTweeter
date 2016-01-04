@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-public class MobileResourceFactory : ResourceFactory {
-	public var highlightingAttribute: (String, AnyObject)
+class MobileResourceFactory : ResourceFactory {
+	var highlightingAttribute: (String, AnyObject)
 
-	public init() {
+	init() {
 		highlightingAttribute = (NSForegroundColorAttributeName, UIColor.blueColor())
 	}
 }

@@ -8,26 +8,26 @@
 
 import Foundation
 
-public class TweetListPresenter : TweetListInteractorOutput, TweetListInterface {
-	public var view: TweetListView?
-	public var interactor: TweetListInteractorInput?
+class TweetListPresenter : TweetListInteractorOutput, TweetListInterface {
+	var view: TweetListView?
+	var interactor: TweetListInteractorInput?
 	var resourceFactory: ResourceFactory
 
-	public init(resourceFactory: ResourceFactory) {
+	init(resourceFactory: ResourceFactory) {
 		self.resourceFactory = resourceFactory
 	}
 
 	// MARK: TweetListInterface
 
-	public func requestTweetsForUser(userName: String) {
+	func requestTweetsForUser(userName: String) {
 		interactor?.requestTweetsForUserName(userName)
 	}
 
 	// MARK: TweetListInteractorOutput
 
-	public func foundTweets(tweetlist: [TweetListResponseModel]) {
+	func foundTweets(tweetlist: [TweetListResponseModel]) {
 		let viewModel: [TweetListItem] = tweetlist.map {
-			return TweetListItem(primaryHeading: $0.user, secondaryHeading: $0.age, content: self.attributeContent($0.content))
+			return TweetListItem(primaryHeading: $0.user, secondaryHeading: $0.age, content: self.attributeContent($0.content), imageName: $0.avatar != "" ? $0.avatar : "placeholder")
 		}
 		self.view?.updateViewModel(viewModel)
 	}

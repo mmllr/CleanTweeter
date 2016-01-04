@@ -7,10 +7,11 @@
 //
 
 import XCTest
+
 #if os(iOS)
-import CleanTweeter
+@testable import CleanTweeter
 #else
-import CleanTweeterMac
+@testable import CleanTweeterMac
 #endif
 	
 class UserTests: XCTestCase {
@@ -35,5 +36,11 @@ class UserTests: XCTestCase {
 		let user = User(name: "u", followedUsers: ["f1", "f2", "f2", "f3", "f1", "f3"], tweets: [])
 		
 		XCTAssertEqual(user.followedUsers, ["f1", "f2", "f3"])
+	}
+
+	func testThatAUserHasAnAvatar() {
+		let user = User(name: "u", followedUsers: ["u2"], tweets: [Tweet(author: "a", content: "c", publicationDate: NSDate())], avatar: "avatar")
+
+		XCTAssertEqual(user.avatar, "avatar")
 	}
 }

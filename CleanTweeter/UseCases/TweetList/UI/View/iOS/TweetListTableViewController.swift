@@ -8,36 +8,36 @@
 
 import UIKit
 
-public class TweetListTableViewController: UITableViewController, TweetListView {
-	public var moduleInterface: TweetListInterface?
+class TweetListTableViewController: UITableViewController, TweetListView {
+	var moduleInterface: TweetListInterface?
 	var viewModel: [TweetListItem] = []
 	
-	public func updateViewModel(viewModel: [TweetListItem]) {
+	func updateViewModel(viewModel: [TweetListItem]) {
 		self.viewModel = viewModel
 		self.tableView.dataSource = self
 		self.tableView.reloadData()
 	}
 
-	override public func viewDidLoad() {
+	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.tableView.estimatedRowHeight = CGFloat(60)
 		self.tableView.rowHeight = UITableViewAutomaticDimension
 	}
 
-	public override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
 		self.moduleInterface?.requestTweetsForUser("Tim Cook")
 	}
 	
-	public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 
-	public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.viewModel.count
 	}
 
-	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let contentCell = tableView.dequeueReusableCellWithIdentifier("HeadingContentCell") as! HeadingContentCell!
 		contentCell.primaryHeadingLabel.text = self.viewModel[indexPath.row].primaryHeading
 		contentCell.secondaryContentLabel.text = self.viewModel[indexPath.row].secondaryHeading

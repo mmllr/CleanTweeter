@@ -9,10 +9,10 @@
 import Foundation
 import Cocoa
 
-public class OSXResourceFactory : ResourceFactory {
-	public var highlightingAttribute: (String, AnyObject)
+class OSXResourceFactory : ResourceFactory {
+	var highlightingAttribute: (String, AnyObject)
 	
-	public init() {
+	init() {
 		highlightingAttribute = (NSForegroundColorAttributeName, NSColor.blueColor())
 	}
 }

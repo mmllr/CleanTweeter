@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-public class TweetListWireframe {
-	public let viewController: TweetListTableViewController
-	public let interactor: TweetListInteractor
-	public let presenter: TweetListPresenter
+class TweetListWireframe {
+	let viewController: TweetListTableViewController
+	let interactor: TweetListInteractor
+	let presenter: TweetListPresenter
 
-	public init(userRepository: UserRepository) {
+	init(userRepository: UserRepository) {
 		viewController = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as! TweetListTableViewController
 
 		interactor = TweetListInteractor(repository: userRepository)

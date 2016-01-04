@@ -8,9 +8,9 @@
 
 import Foundation
 #if os(iOS)
-import CleanTweeter
+@testable import CleanTweeter
 #else
-import CleanTweeterMac
+@testable import CleanTweeterMac
 #endif
 
 class UserRepositoryMock : UserRepository {

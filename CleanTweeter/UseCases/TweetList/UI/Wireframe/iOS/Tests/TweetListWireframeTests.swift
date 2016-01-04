@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import CleanTweeter
+@testable import CleanTweeter
 
 class TweetListWireframeTests: XCTestCase {
 	var sut: TweetListWireframe!

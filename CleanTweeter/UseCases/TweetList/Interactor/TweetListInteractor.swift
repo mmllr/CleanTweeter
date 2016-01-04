@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class TweetListInteractor: TweetListInteractorInput {
-	public var output: TweetListInteractorOutput?
+class TweetListInteractor: TweetListInteractorInput {
+	var output: TweetListInteractorOutput?
 	var repository: UserRepository
 	let dateFormatter: NSDateComponentsFormatter
 
-	public init(repository: UserRepository) {
+	init(repository: UserRepository) {
 		self.repository = repository
 		let formatter = NSDateComponentsFormatter()
 		formatter.unitsStyle = .Abbreviated
@@ -22,7 +22,7 @@ public class TweetListInteractor: TweetListInteractorInput {
 		self.dateFormatter = formatter
 	}
 
-	public func requestTweetsForUserName(userName:String) {
+	func requestTweetsForUserName(userName:String) {
 		if let user = self.repository.findUser(userName) {
 			let followedUserTweets: [[Tweet]] = user.followedUsers.map {
 				if let follower = self.repository.findUser($0) {
@@ -34,7 +34,10 @@ public class TweetListInteractor: TweetListInteractorInput {
 			let sortedTweets = (user.tweets + followedUserTweets.flatMap{ $0 }).sort()
 
 			let result: [TweetListResponseModel] = sortedTweets.map {
-				TweetListResponseModel(user: $0.author, content: $0.content, age: self.dateFormatter.stringFromDate($0.publicationDate, toDate: NSDate())!)
+				if let avatar = repository.findUser($0.author)?.avatar {
+					return TweetListResponseModel(user: $0.author, content: $0.content, age: self.dateFormatter.stringFromDate($0.publicationDate, toDate: NSDate())!, avatar: avatar)
+				}
+				return TweetListResponseModel(user: $0.author, content: $0.content, age: self.dateFormatter.stringFromDate($0.publicationDate, toDate: NSDate())!, avatar: "")
 			}
 			output?.foundTweets(result)
 		}

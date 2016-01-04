@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol TweetListView {
+protocol TweetListView {
 	func updateViewModel(_: [TweetListItem])
 }
