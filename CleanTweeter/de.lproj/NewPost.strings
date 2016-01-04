@@ -1,0 +1,12 @@
+/* Class = "UIView"; accessibilityIdentifier = "UserImage"; ObjectID = "AFG-Lz-yd9"; */
+"AFG-Lz-yd9.accessibilityIdentifier" = "UserImage";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "O2b-5o-utG"; */
+"O2b-5o-utG.text" = "Label";
+
+/* Class = "UITextView"; accessibilityHint = "Enter a tweet"; ObjectID = "kkO-4a-nJg"; */
+"kkO-4a-nJg.accessibilityHint" = "Geben Sie einen Tweet ein";
+
+/* Class = "UITextView"; accessibilityIdentifier = "TweetTextField"; ObjectID = "kkO-4a-nJg"; */
+"kkO-4a-nJg.accessibilityIdentifier" = "TweetTextField";
+

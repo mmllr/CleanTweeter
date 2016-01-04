@@ -1,0 +1,21 @@
+/* Class = "UINavigationItem"; title = "Clean Tweeter"; ObjectID = "MbN-RE-46L"; */
+"MbN-RE-46L.title" = "Clean Tweeter";
+
+/* Class = "UILabel"; accessibilityIdentifier = "Author"; ObjectID = "RxC-qe-Wmc"; */
+"RxC-qe-Wmc.accessibilityIdentifier" = "Author";
+
+/* Class = "UILabel"; text = "Author"; ObjectID = "RxC-qe-Wmc"; */
+"RxC-qe-Wmc.text" = "Author";
+
+/* Class = "UILabel"; accessibilityIdentifier = "Tweet Age"; ObjectID = "XOZ-H6-X9Z"; */
+"XOZ-H6-X9Z.accessibilityIdentifier" = "Tweet Age";
+
+/* Class = "UILabel"; text = "Age"; ObjectID = "XOZ-H6-X9Z"; */
+"XOZ-H6-X9Z.text" = "Alter";
+
+/* Class = "UILabel"; accessibilityIdentifier = "Content"; ObjectID = "gzx-zD-lAq"; */
+"gzx-zD-lAq.accessibilityIdentifier" = "Content";
+
+/* Class = "UILabel"; text = "Content"; ObjectID = "gzx-zD-lAq"; */
+"gzx-zD-lAq.text" = "Inhalt";
+

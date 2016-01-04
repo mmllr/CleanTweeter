@@ -15,6 +15,7 @@
 		2822715B1A09C3D700604F9C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822715A1A09C3D700604F9C /* UserRepository.swift */; };
 		2822715C1A09C3D700604F9C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822715A1A09C3D700604F9C /* UserRepository.swift */; };
 		282724FA1A02B3AA0095F0FC /* UserRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282724F91A02B3AA0095F0FC /* UserRepositoryMock.swift */; };
+		282BE26C1C3B31490098880C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 282BE26E1C3B31490098880C /* Localizable.strings */; };
 		283478191A0932BD009A15ED /* String+MKMExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283478181A0932BD009A15ED /* String+MKMExtenstions.swift */; };
 		284544341C3A827200E505C9 /* TestAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284544331C3A827200E505C9 /* TestAssets.xcassets */; };
 		284544351C3A827200E505C9 /* TestAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284544331C3A827200E505C9 /* TestAssets.xcassets */; };
@@ -129,6 +130,14 @@
 		281EE2D51C3B195A008D4448 /* NewPostWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostWireframe.swift; sourceTree = "<group>"; };
 		2822715A1A09C3D700604F9C /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		282724F91A02B3AA0095F0FC /* UserRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryMock.swift; sourceTree = "<group>"; };
+		282BE26D1C3B31490098880C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		282BE26F1C3B317A0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TweetList.strings; sourceTree = "<group>"; };
+		282BE2701C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		282BE2711C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		282BE2721C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NewPost.strings; sourceTree = "<group>"; };
+		282BE2731C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		282BE2741C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TweetListWindow.strings; sourceTree = "<group>"; };
+		282BE2751C3B317B0098880C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		283478181A0932BD009A15ED /* String+MKMExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MKMExtenstions.swift"; sourceTree = "<group>"; };
 		284544331C3A827200E505C9 /* TestAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TestAssets.xcassets; sourceTree = "<group>"; };
 		284544361C3A9C7900E505C9 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -271,6 +280,14 @@
 				281EE2D31C3B18F4008D4448 /* NewPostWireframeTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		282BE2691C3B31220098880C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				282BE26E1C3B31490098880C /* Localizable.strings */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		283478161A093274009A15ED /* String+MKMExtenstions */ = {
@@ -518,6 +535,7 @@
 				28E05E271A013A49006FCEFD /* UseCases */,
 				28D55BCB1A07E8E600A9ADD9 /* Boundaries */,
 				28D55BD41A07EE7600A9ADD9 /* Storyboards */,
+				282BE2691C3B31220098880C /* Resources */,
 				28E05E071A0139EE006FCEFD /* AppDelegate.swift */,
 				286EA6081A07DFD400681C31 /* CleanTweeterDependencies.swift */,
 				28E05E0E1A0139EE006FCEFD /* Images.xcassets */,
@@ -834,6 +852,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 28E05DF91A0139EE006FCEFD;
 			productRefGroup = 28E05E031A0139EE006FCEFD /* Products */;
@@ -862,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				287141701C3B077D00FA03BA /* NewPost.storyboard in Resources */,
+				282BE26C1C3B31490098880C /* Localizable.strings in Resources */,
 				28E05E0D1A0139EE006FCEFD /* TweetList.storyboard in Resources */,
 				28D55BD31A07EE6B00A9ADD9 /* Main.storyboard in Resources */,
 				28E05E121A0139EE006FCEFD /* LaunchScreen.xib in Resources */,
@@ -1032,10 +1052,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		282BE26E1C3B31490098880C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				282BE26D1C3B31490098880C /* en */,
+				282BE2751C3B317B0098880C /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		287141721C3B077D00FA03BA /* NewPost.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				287141711C3B077D00FA03BA /* Base */,
+				282BE2721C3B317B0098880C /* de */,
 			);
 			name = NewPost.storyboard;
 			sourceTree = "<group>";
@@ -1044,6 +1074,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				28D55BD21A07EE6B00A9ADD9 /* Base */,
+				282BE2711C3B317B0098880C /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1052,6 +1083,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				28E05E0C1A0139EE006FCEFD /* Base */,
+				282BE26F1C3B317A0098880C /* de */,
 			);
 			name = TweetList.storyboard;
 			sourceTree = "<group>";
@@ -1060,6 +1092,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				28E05E111A0139EE006FCEFD /* Base */,
+				282BE2701C3B317B0098880C /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -1068,6 +1101,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				28FFB36B1A0947B800B29AD2 /* Base */,
+				282BE2731C3B317B0098880C /* de */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1076,6 +1110,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				28FFB3821A09485500B29AD2 /* Base */,
+				282BE2741C3B317B0098880C /* de */,
 			);
 			name = TweetListWindow.xib;
 			sourceTree = "<group>";
@@ -1199,7 +1234,7 @@
 				INFOPLIST_FILE = CleanTweeter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1211,7 +1246,7 @@
 				INFOPLIST_FILE = CleanTweeter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

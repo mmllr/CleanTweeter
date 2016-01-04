@@ -1,10 +1,3 @@
-//
-//  CleanTweeterUITests.swift
-//  CleanTweeterUITests
-//
-//  Created by Markus Müller on 04.01.16.
-//  Copyright © 2016 Markus Müller. All rights reserved.
-//
 
 import XCTest
 
@@ -20,16 +13,18 @@ class CleanTweeterUITests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
     func testExample() {
+		let app = XCUIApplication()
+		app.navigationBars["Clean Tweeter"].buttons["New Post"].tap()
 		
-		XCUIApplication().navigationBars["Clean Tweeter"].buttons["New Post"].tap()
-		
-		
-        
+		let tweettextfieldTextView = app.textViews["TweetTextField"]
+		tweettextfieldTextView.typeText("Mein lieber Herr Gesangsverein")
+
+		app.navigationBars["Tim Cook"].buttons["Done"].tap()
+
+		XCTAssertTrue(app.staticTexts["Mein lieber Herr Gesangsverein"].exists)
     }
-    
 }
