@@ -35,7 +35,7 @@ public class TweetListPresenter : TweetListInteractorOutput, TweetListInterface 
 	func attributeContent(content: String) -> NSAttributedString {
 		return content.findRangesWithPattern("((@|#)([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))|(http(s)?://([A-Z0-9a-z._-]*(/)?)*)").reduce(NSMutableAttributedString(string: content)) {
 			let string = $0
-			let range = NSMakeRange(distance(content.startIndex, $1.startIndex), $1.count)
+			let range = NSMakeRange(content.startIndex.distanceTo($1.startIndex), $1.count)
 			let attribute = self.resourceFactory.highlightingAttribute
 			string.addAttribute(attribute.0, value: attribute.1, range: range)
 			return string

@@ -17,7 +17,7 @@ public struct Tweet : Comparable {
 
 	public init(author: String, content: String, publicationDate: NSDate = NSDate()) {
 		self.author = author
-		self.content = content.characters.count > 160 ? content.substringToIndex(advance(content.startIndex, 160)) : content
+		self.content = content.characters.count > 160 ? content.substringToIndex(content.startIndex.advancedBy(160)) : content
 		self.publicationDate = publicationDate.timeIntervalSinceNow > 0 ? NSDate() : publicationDate
 		self.mentionedUsers = findMentions(self.content)
 		self.tags = findTags(self.content)

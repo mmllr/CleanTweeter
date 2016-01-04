@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol TweetListView {
-	func updateViewModel([TweetListItem])
+	func updateViewModel(_: [TweetListItem])
 }
