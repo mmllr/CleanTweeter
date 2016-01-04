@@ -1,17 +1,18 @@
-//
-//  TweetListTableViewControllerTests.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 03.11.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import UIKit
 import XCTest
 @testable import CleanTweeter
 
 class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
+	class RoutingDelegateSpy : TweetListRoutingDelegate {
+		var newPostInvoked = false
+
+		func createNewPost() {
+			newPostInvoked = true
+		}
+	}
 	var sut: TweetListTableViewController!
+	var view: UIView!
 	var tableView: UITableView!
 	var requestedUser: String = ""
 	var viewModel: [TweetListItem] = [
@@ -22,11 +23,17 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 
     override func setUp() {
         super.setUp()
-		sut = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as? TweetListTableViewController
-		self.tableView = sut?.tableView
+		sut = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as! TweetListTableViewController
+		self.view = sut.view!
+		self.tableView = sut.tableView
 		sut.moduleInterface = self
     }
 
+	override func tearDown() {
+		self.view = nil
+		self.tableView = nil
+		super.tearDown()
+	}
 	// MARK: TweetListInterface
 	
 	func requestTweetsForUser(userName: String) {
@@ -45,10 +52,10 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	}
 	
 	func testThatItLoadsTheViewModel() {
-		sut?.updateViewModel(self.viewModel)
+		sut.updateViewModel(self.viewModel)
 
 		for (index, item) in (viewModel).enumerate() {
-			let headingCell = sut?.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as! HeadingContentCell
+			let headingCell = sut.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as! HeadingContentCell
 
 			XCTAssertEqual(headingCell.primaryHeadingLabel.text!, item.primaryHeading)
 			XCTAssertEqual(headingCell.secondaryContentLabel.text!, item.secondaryHeading)
@@ -62,5 +69,28 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 		sut.viewWillAppear(false)
 
 		XCTAssertEqual(self.requestedUser, "Tim Cook")
+	}
+
+	func testThatTheTableViewDoesNotShowSeparators() {
+		let expectedStyle: UITableViewCellSeparatorStyle = .None
+		XCTAssertEqual(sut.tableView.separatorStyle, expectedStyle)
+	}
+
+	func testThatItHasAnPostTweetButton() {
+		XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+
+		let item = sut.navigationItem.rightBarButtonItem!
+		XCTAssertEqual(item.title, NSLocalizedString("New Post", comment: "New Post"))
+		XCTAssertEqual(item.target as? TweetListTableViewController, sut)
+		XCTAssertEqual(item.action, Selector("newPost:"))
+	}
+
+	func testThatTheNewPostActionMethodWillInvokeNewPostOnTheRoutingDelegate() {
+		let spy = RoutingDelegateSpy()
+		sut.routingDelegate = spy
+
+		sut.newPost(self)
+
+		XCTAssertTrue(spy.newPostInvoked)
 	}
 }

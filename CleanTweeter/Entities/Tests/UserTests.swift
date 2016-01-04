@@ -39,8 +39,9 @@ class UserTests: XCTestCase {
 	}
 
 	func testThatAUserHasAnAvatar() {
-		let user = User(name: "u", followedUsers: ["u2"], tweets: [Tweet(author: "a", content: "c", publicationDate: NSDate())], avatar: "avatar")
+		let user = User(name: "u", followedUsers: ["u2"], tweets: [Tweet(author: "u", content: "c", publicationDate: NSDate())], avatar: "avatar")
 
 		XCTAssertEqual(user.avatar, "avatar")
 	}
+
 }

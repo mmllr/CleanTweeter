@@ -1,10 +1,3 @@
-//
-//  DemoUserRepository.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 03.11.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import Foundation
 
@@ -41,11 +34,15 @@ class DemoUserRepository : UserRepository {
 
 	init() {
 		for user in createUsers() {
-			store[user.name] = user
+			updateUser(user)
 		}
 	}
 
 	func findUser(userName: String) -> User? {
 		return store[userName]
+	}
+
+	func updateUser(user: User) {
+		store[user.name] = user
 	}
 }

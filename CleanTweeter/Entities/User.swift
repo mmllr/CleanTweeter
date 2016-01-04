@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+struct User : Equatable {
 	let name: String
 	let followedUsers: [String]
 	let tweets: [Tweet]
@@ -22,4 +22,17 @@ struct User {
 		self.tweets = tweets
 		self.avatar = avatar
 	}
+}
+
+func ==(lhs: User, rhs: User) -> Bool {
+	if lhs.name != rhs.name {
+		return false
+	}
+	if lhs.followedUsers != rhs.followedUsers {
+		return false
+	}
+	if lhs.avatar != rhs.avatar {
+		return false
+	}
+	return lhs.tweets == rhs.tweets
 }

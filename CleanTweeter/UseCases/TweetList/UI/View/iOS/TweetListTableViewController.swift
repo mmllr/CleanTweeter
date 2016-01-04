@@ -1,16 +1,10 @@
-//
-//  TweetListTableViewController.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 03.11.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import UIKit
 
 class TweetListTableViewController: UITableViewController, TweetListView {
 	var moduleInterface: TweetListInterface?
 	var viewModel: [TweetListItem] = []
+	var routingDelegate: TweetListRoutingDelegate?
 	
 	func updateViewModel(viewModel: [TweetListItem]) {
 		self.viewModel = viewModel
@@ -23,6 +17,8 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 
 		self.tableView.estimatedRowHeight = CGFloat(60)
 		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.tableView.separatorStyle = .None
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("New Post", comment: "New Post"), style: .Plain, target: self, action: Selector("newPost:"))
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -45,6 +41,10 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 		contentCell.circularImageView.image = UIImage(named: self.viewModel[indexPath.row].imageName)!
 		contentCell.circularImageView.accessibilityLabel = self.viewModel[indexPath.row].primaryHeading
 		return contentCell
+	}
+	
+	@IBAction func newPost(sender: AnyObject?) {
+		self.routingDelegate?.createNewPost()
 	}
 
 }

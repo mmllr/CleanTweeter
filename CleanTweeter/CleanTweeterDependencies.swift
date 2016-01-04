@@ -1,23 +1,34 @@
-//
-//  CleanTweeterDependencies.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 03.11.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import Foundation
 import UIKit
 
-class CleanTweeterDependencies {
+class CleanTweeterDependencies : TweetListRoutingDelegate, NewPostRoutingDelegate {
 	let userRepository: DemoUserRepository
 	let tweetListWireframe: TweetListWireframe
+	let newPostWireframe: NewPostWireframe
+	var mainNavigationController: UINavigationController!
+
 	var rootViewController: UIViewController {
-		return UINavigationController(rootViewController: self.tweetListWireframe.viewController)
+		let controller: TweetListTableViewController = self.tweetListWireframe.viewController
+		controller.routingDelegate = self
+		self.mainNavigationController = UINavigationController(rootViewController: controller)
+		return mainNavigationController
 	}
-	
+
 	init() {
 		userRepository = DemoUserRepository()
 		tweetListWireframe = TweetListWireframe(userRepository: userRepository)
+		newPostWireframe = NewPostWireframe(userRepository: userRepository)
+	}
+
+	func createNewPost() {
+		let vc = newPostWireframe.viewController
+		vc.routingDelegate = self
+		let nav = UINavigationController(rootViewController: vc)
+		self.mainNavigationController.presentViewController(nav, animated: true, completion: nil)
+	}
+
+	func hideNewPostView() {
+		self.mainNavigationController.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 }

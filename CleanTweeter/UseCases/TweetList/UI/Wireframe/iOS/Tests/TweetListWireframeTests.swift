@@ -1,10 +1,3 @@
-//
-//  TweetListWireframeTests.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 03.11.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import XCTest
 @testable import CleanTweeter
@@ -29,5 +22,4 @@ class TweetListWireframeTests: XCTestCase {
 		XCTAssertTrue(sut.presenter.interactor is TweetListInteractor)
 		XCTAssertTrue(sut.viewController.moduleInterface is TweetListPresenter)
 	}
-
 }

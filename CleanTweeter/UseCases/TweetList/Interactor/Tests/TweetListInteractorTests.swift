@@ -1,10 +1,3 @@
-//
-//  TweetListInteractorTests.swift
-//  CleanTweeter
-//
-//  Created by Markus Müller on 29.10.14.
-//  Copyright (c) 2014 Markus Müller. All rights reserved.
-//
 
 import XCTest
 #if os(iOS)
@@ -16,12 +9,16 @@ import XCTest
 class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 	var sut: TweetListInteractor?
 	var repositoryMock: UserRepositoryMock = UserRepositoryMock()
+	let dateFormatter = NSDateComponentsFormatter()
 
 	var response: [TweetListResponseModel] = []
 	
     override func setUp() {
         super.setUp()
 
+		dateFormatter.unitsStyle = .Abbreviated
+		dateFormatter.allowedUnits = [.Year, .Day, .Hour, .Minute]
+		dateFormatter.maximumUnitCount = 1
 		sut = TweetListInteractor(repository:self.repositoryMock)
 		sut!.output = self
     }
@@ -39,9 +36,17 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		 return NSDate(timeIntervalSinceNow: timeInterval)
 	}
 	
-	func givenATweetCreatedDaysAgo(days: Int, hours: Int, minutes: Int, seconds: Int) {
-		let tweet = Tweet(author: "u", content: "t1", publicationDate: self.givenADateDaysAgo(days, hours: hours, minutes: minutes, seconds: seconds))
+	func givenATweetCreatedDaysAgo(days: Int, hours: Int, minutes: Int, seconds: Int) -> NSDate {
+		let date = self.givenADateDaysAgo(days, hours: hours, minutes: minutes, seconds: seconds)
+		let tweet = Tweet(author: "u", content: "t1", publicationDate: date)
 		self.repositoryMock.givenTheUsers([User(name: "u", followedUsers: [], tweets:[tweet])])
+		return date
+	}
+	
+	// MARK: Test helpers
+	
+	func expectedAgeStringForDate(date: NSDate) -> String {
+		return dateFormatter.stringFromDate(date, toDate: NSDate())!
 	}
 	
 	// MARK: Tests
@@ -61,7 +66,7 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		
 		sut!.requestTweetsForUserName("u")
 
-		XCTAssertEqual(self.response, [TweetListResponseModel(user: "u", content: "tweet", age: "0m", avatar: "")])
+		XCTAssertEqual(self.response, [TweetListResponseModel(user: "u", content: "tweet", age: expectedAgeStringForDate(tweet.publicationDate), avatar: "")])
 	}
 
 	func testThatManyTweetsFromOneUserInTheRepositoryResultsInThatUsersTweetsOrderedByDate() {
@@ -75,55 +80,55 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 		sut!.requestTweetsForUserName("u")
 
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "u", content: "t1", age: "1m", avatar: ""),
-			TweetListResponseModel(user: "u", content: "t3", age: "2m", avatar: ""),
-			TweetListResponseModel(user: "u", content: "t2", age: "3m", avatar: "")
+			TweetListResponseModel(user: "u", content: "t1", age: expectedAgeStringForDate(tweets[0].publicationDate), avatar: ""),
+			TweetListResponseModel(user: "u", content: "t3", age: expectedAgeStringForDate(tweets[2].publicationDate), avatar: ""),
+			TweetListResponseModel(user: "u", content: "t2", age: expectedAgeStringForDate(tweets[1].publicationDate), avatar: "")
 			]
 		)
 	}
 
 	func testThatThePublicationDateWillBeFormattedRelativeToTheReferenceDate() {
-		self.givenATweetCreatedDaysAgo(0, hours: 0, minutes: 1, seconds: 0)
+		let tweetDate = givenATweetCreatedDaysAgo(0, hours: 0, minutes: 1, seconds: 0)
 		sut!.requestTweetsForUserName("u")
 
 		let responseModel = self.response[0]
-		XCTAssertEqual(responseModel.age, "1m")
+		XCTAssertEqual(responseModel.age, expectedAgeStringForDate(tweetDate))
 	}
 
 	func testThatATweetMoreThanAnHourAgoWillShowNoMinutesInItsFormattedString() {
-		self.givenATweetCreatedDaysAgo(0, hours: 1, minutes: 12, seconds: 0)
+		let tweetDate = givenATweetCreatedDaysAgo(0, hours: 1, minutes: 12, seconds: 0)
 
 		sut!.requestTweetsForUserName("u")
 		
 		let responseModel = self.response[0]
-		XCTAssertEqual(responseModel.age, "1h")
+		XCTAssertEqual(responseModel.age, expectedAgeStringForDate(tweetDate))
 	}
 
 	func testThatATweetMoreThanADayAgoWillShowNoHoursAndMinutesInItsFormattedString() {
-		self.givenATweetCreatedDaysAgo(1, hours: 17, minutes: 10, seconds: 30)
+		let tweetDate = givenATweetCreatedDaysAgo(1, hours: 17, minutes: 10, seconds: 30)
 		
 		sut!.requestTweetsForUserName("u")
 		
 		let responseModel = self.response[0]
-		XCTAssertEqual(responseModel.age, "2d")
+		XCTAssertEqual(responseModel.age, expectedAgeStringForDate(tweetDate))
 	}
 
 	func testThatATweetCreatedNowInItsFormattedString() {
-		self.givenATweetCreatedDaysAgo(0, hours: 0, minutes: 0, seconds: 0)
+		let tweetDate = givenATweetCreatedDaysAgo(0, hours: 0, minutes: 0, seconds: 0)
 		
 		sut!.requestTweetsForUserName("u")
 		
 		let responseModel = self.response[0]
-		XCTAssertEqual(responseModel.age, "0m")
+		XCTAssertEqual(responseModel.age, expectedAgeStringForDate(tweetDate))
 	}
 
 	func testThatATweetCreatedMoreThanAYearAgoShowsOnlyTheYearsInItsFormattedString() {
-		self.givenATweetCreatedDaysAgo(400, hours: 10, minutes: 20, seconds: 0)
+		let tweetDate = givenATweetCreatedDaysAgo(400, hours: 10, minutes: 20, seconds: 0)
 
 		sut!.requestTweetsForUserName("u")
 		
 		let responseModel = self.response[0]
-		XCTAssertEqual(responseModel.age, "2y")
+		XCTAssertEqual(responseModel.age, expectedAgeStringForDate(tweetDate))
 	}
 
 	func testThatAUserWithNoTweetsButOneFollowerWillHaveHisTweetsInTheResponse() {
@@ -131,41 +136,35 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 			Tweet(author: "f", content: "t1", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 1, seconds: 0)),
 			Tweet(author: "f", content: "t2", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 3, seconds: 0))
 			], avatar: "avatar")
-
-		self.repositoryMock.givenTheUsers([
-			User(name: "u", followedUsers: ["f"], tweets:[]),
-			follower
-			]
-		)
+		self.repositoryMock.givenTheUsers([User(name: "u", followedUsers: ["f"], tweets:[]), follower])
 
 		sut!.requestTweetsForUserName("u")
 		
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "f", content: "t1", age: "1m", avatar: "avatar"),
-			TweetListResponseModel(user: "f", content: "t2", age: "3m", avatar: "avatar")
+			TweetListResponseModel(user: "f", content: "t1", age: expectedAgeStringForDate(follower.tweets[0].publicationDate), avatar: "avatar"),
+			TweetListResponseModel(user: "f", content: "t2", age: expectedAgeStringForDate(follower.tweets[1].publicationDate), avatar: "avatar")
 			]
 		)
 	}
 
 	func testThatAUserWithTweetsAndFollowersWillHaveHisTweetsAnTheFollowersTweetsInTheResponseSortedByDate() {
-		self.repositoryMock.givenTheUsers([
-			User(name: "u", followedUsers: ["f"], tweets:[
-				Tweet(author: "u", content: "u t1", publicationDate:self.givenADateDaysAgo(10, hours: 0, minutes: 0, seconds: 0)),
-				Tweet(author: "u", content: "u t2", publicationDate: self.givenADateDaysAgo(0, hours: 2, minutes: 0, seconds: 0))
-				], avatar: "u-avatar"),
-			User(name: "f", followedUsers: [], tweets:[
-				Tweet(author: "f", content: "f t1", publicationDate:self.givenADateDaysAgo(0, hours: 0, minutes: 5, seconds: 0)),
-				Tweet(author: "f", content: "f t2", publicationDate:self.givenADateDaysAgo(0, hours: 10, minutes: 0, seconds: 0))
-				], avatar: "f-avatar")
-			])
+		let user = User(name: "u", followedUsers: ["f"], tweets:[
+			Tweet(author: "u", content: "u t1", publicationDate:givenADateDaysAgo(10, hours: 0, minutes: 0, seconds: 0)),
+			Tweet(author: "u", content: "u t2", publicationDate:givenADateDaysAgo(0, hours: 2, minutes: 0, seconds: 0))
+			], avatar: "u-avatar")
+		let follower = User(name: "f", followedUsers: [], tweets:[
+			Tweet(author: "f", content: "f t1", publicationDate:givenADateDaysAgo(0, hours: 0, minutes: 5, seconds: 0)),
+			Tweet(author: "f", content: "f t2", publicationDate:givenADateDaysAgo(0, hours: 10, minutes: 0, seconds: 0))
+			], avatar: "f-avatar")
+		self.repositoryMock.givenTheUsers([user, follower])
 
 		sut!.requestTweetsForUserName("u")
 		
 		XCTAssertEqual(self.response, [
-			TweetListResponseModel(user: "f", content: "f t1", age: "5m", avatar: "f-avatar"),
-			TweetListResponseModel(user: "u", content: "u t2", age: "2h", avatar: "u-avatar"),
-			TweetListResponseModel(user: "f", content: "f t2", age: "10h", avatar: "f-avatar"),
-			TweetListResponseModel(user: "u", content: "u t1", age: "10d", avatar: "u-avatar")
+			TweetListResponseModel(user: "f", content: "f t1", age: expectedAgeStringForDate(follower.tweets[0].publicationDate), avatar: "f-avatar"),
+			TweetListResponseModel(user: "u", content: "u t2", age: expectedAgeStringForDate(user.tweets[1].publicationDate), avatar: "u-avatar"),
+			TweetListResponseModel(user: "f", content: "f t2", age: expectedAgeStringForDate(follower.tweets[1].publicationDate), avatar: "f-avatar"),
+			TweetListResponseModel(user: "u", content: "u t1", age: expectedAgeStringForDate(user.tweets[0].publicationDate), avatar: "u-avatar")
 			]
 		)
 	}

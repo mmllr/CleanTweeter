@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="92a-sb-Tga">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Post View Controller-->
+        <scene sceneID="7gQ-RM-J48">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="92a-sb-Tga" customClass="NewPostViewController" customModule="CleanTweeter" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l7r-Lr-49i"/>
+                        <viewControllerLayoutGuide type="bottom" id="jC2-Kb-Jvj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dcx-RT-YXP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFG-Lz-yd9" customClass="CircularImageView" customModule="CleanTweeter">
+                                <rect key="frame" x="280" y="30" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="RDx-NQ-tyC"/>
+                                    <constraint firstAttribute="height" constant="40" id="ofh-uX-PDk"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="gravatar"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkO-4a-nJg">
+                                <rect key="frame" x="20" y="80" width="560" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="f5c-KD-nvU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter"/>
+                                <connections>
+                                    <outlet property="delegate" destination="92a-sb-Tga" id="y8Z-rW-cOd"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-5o-utG">
+                                <rect key="frame" x="285" y="388" width="31" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kkO-4a-nJg" firstAttribute="top" secondItem="AFG-Lz-yd9" secondAttribute="bottom" constant="10" id="D8I-uq-t4Z"/>
+                            <constraint firstItem="AFG-Lz-yd9" firstAttribute="centerX" secondItem="dcx-RT-YXP" secondAttribute="centerX" id="F2N-AO-S1q"/>
+                            <constraint firstItem="O2b-5o-utG" firstAttribute="top" secondItem="kkO-4a-nJg" secondAttribute="bottom" constant="8" id="FNy-lO-qwl"/>
+                            <constraint firstItem="kkO-4a-nJg" firstAttribute="leading" secondItem="dcx-RT-YXP" secondAttribute="leadingMargin" id="PJv-fr-GJf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kkO-4a-nJg" secondAttribute="trailing" id="fRg-hG-KU2"/>
+                            <constraint firstItem="AFG-Lz-yd9" firstAttribute="top" secondItem="l7r-Lr-49i" secondAttribute="bottom" constant="10" id="gFL-yX-1uI"/>
+                            <constraint firstItem="O2b-5o-utG" firstAttribute="centerX" secondItem="dcx-RT-YXP" secondAttribute="centerX" id="mt6-5Z-rcT"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="AFG-Lz-yd9" id="mi8-jH-JfG"/>
+                        <outlet property="contentTextView" destination="kkO-4a-nJg" id="ZHS-TG-C5c"/>
+                        <outlet property="countLabel" destination="O2b-5o-utG" id="4WJ-y0-JDQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GCp-7t-7Eo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-38" y="534"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gravatar" width="460" height="460"/>
+    </resources>
+</document>
