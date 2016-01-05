@@ -12,8 +12,10 @@ class NewPostViewController: UIViewController, NewPostView, UITextViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done:"))
+		self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "Done"
 
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("cancel:"))
+		self.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "Cancel"
 		self.automaticallyAdjustsScrollViewInsets = true
 	}
 	

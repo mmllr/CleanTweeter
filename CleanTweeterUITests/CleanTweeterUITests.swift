@@ -27,4 +27,5 @@ class CleanTweeterUITests: XCTestCase {
 
 		XCTAssertTrue(app.staticTexts["Mein lieber Herr Gesangsverein"].exists)
     }
+
 }

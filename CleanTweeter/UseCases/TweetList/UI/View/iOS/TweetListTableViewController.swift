@@ -19,7 +19,7 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 		self.tableView.rowHeight = UITableViewAutomaticDimension
 		self.tableView.separatorStyle = .None
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("New Post", comment: "New Post"), style: .Plain, target: self, action: Selector("newPost:"))
-		//self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "New Post"
+		self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "New Post"
 	}
 
 	override func viewWillAppear(animated: Bool) {
