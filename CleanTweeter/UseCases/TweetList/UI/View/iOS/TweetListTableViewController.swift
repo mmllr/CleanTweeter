@@ -5,7 +5,7 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 	var moduleInterface: TweetListInterface?
 	var viewModel: [TweetListItem] = []
 	var routingDelegate: TweetListRoutingDelegate?
-	
+
 	func updateViewModel(viewModel: [TweetListItem]) {
 		self.viewModel = viewModel
 		self.tableView.dataSource = self
@@ -39,7 +39,12 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 		contentCell.primaryHeadingLabel.text = self.viewModel[indexPath.row].primaryHeading
 		contentCell.secondaryContentLabel.text = self.viewModel[indexPath.row].secondaryHeading
 		contentCell.contentLabel.attributedText = self.viewModel[indexPath.row].content
-		contentCell.circularImageView.image = UIImage(named: self.viewModel[indexPath.row].imageName)!
+		if let data = NSData(contentsOfURL: NSURL(string: self.viewModel[indexPath.row].imageName)!) {
+			contentCell.circularImageView.image = UIImage(data: data)
+		}
+		else {
+			contentCell.circularImageView.image = UIImage(named: self.viewModel[indexPath.row].imageName)!
+		}
 		contentCell.circularImageView.accessibilityLabel = self.viewModel[indexPath.row].primaryHeading
 		return contentCell
 	}

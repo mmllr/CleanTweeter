@@ -31,7 +31,12 @@ class NewPostViewController: UIViewController, NewPostView, UITextViewDelegate {
 		contentTextView.attributedText = viewModel.content
 		self.title = viewModel.name
 		self.navigationItem.rightBarButtonItem!.enabled = viewModel.canPost
-		self.avatarImageView.image = UIImage(named: viewModel.avatar)
+		if let data = NSData(contentsOfURL: NSURL(string: viewModel.avatar)!) {
+			self.avatarImageView.image = UIImage(data: data)
+		}
+		else {
+			self.avatarImageView.image = UIImage(named: viewModel.avatar)!
+		}
 	}
 
 	func textViewDidChange(textView: UITextView) {

@@ -45,8 +45,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wus-j3-IfH" customClass="CircularImageView" customModule="CleanTweeter" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="40" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                            <accessibility key="accessibilityConfiguration" label="Image">
+                                                <accessibilityTraits key="traits" image="YES"/>
                                                 <bool key="isElement" value="YES"/>
                                             </accessibility>
                                             <constraints>

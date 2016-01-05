@@ -16,7 +16,7 @@ class CleanTweeterUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testNewPost() {
 		let app = XCUIApplication()
 		app.navigationBars["Clean Tweeter"].buttons["New Post"].tap()
 		
