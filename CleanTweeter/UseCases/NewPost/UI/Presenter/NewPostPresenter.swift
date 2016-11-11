@@ -4,9 +4,9 @@ import Foundation
 class NewPostPresenter : NewPostInterface, NewPostInteractorOutput {
 	var view: NewPostView?
 	var interactor: NewPostInteractorInput?
-	private var avatar = ""
-	private var userName = ""
-	private var content = ""
+	fileprivate var avatar = ""
+	fileprivate var userName = ""
+	fileprivate var content = ""
 	var resourceFactory: ResourceFactory
 
 	init(factory: ResourceFactory, userName: String) {
@@ -14,7 +14,7 @@ class NewPostPresenter : NewPostInterface, NewPostInteractorOutput {
 		self.userName = userName
 	}
 	
-	func requestViewForContent(content: String) {
+	func requestViewForContent(_ content: String) {
 		interactor?.requestAvatarForUserName(userName)
 		self.content = content
 
@@ -22,10 +22,10 @@ class NewPostPresenter : NewPostInterface, NewPostInteractorOutput {
 	}
 
 	func post() {
-		self.interactor?.postContent(self.content, forUser: self.userName, publicationDate: NSDate())
+		self.interactor?.postContent(self.content, forUser: self.userName, publicationDate: Date())
 	}
 	
-	func foundAvatar(avatar: String) {
+	func foundAvatar(_ avatar: String) {
 		self.avatar = avatar
 		self.view?.updateView(self.createViewModel())
 	}
@@ -37,7 +37,7 @@ class NewPostPresenter : NewPostInterface, NewPostInteractorOutput {
 			return NewPostViewModel(name: self.userName, avatar: self.avatar != "" ? self.avatar : "placeholder", content: transformer.transformedValue(self.content) as! NSAttributedString, characterCount: "\(160 - contentLength)", canEdit: true, canPost: contentLength > 0)
 		}
 		else {
-			let substring = self.content.substringToIndex(self.content.startIndex.advancedBy(160))
+			let substring = self.content.substring(to: self.content.characters.index(self.content.startIndex, offsetBy: 160))
 			return NewPostViewModel(name: self.userName, avatar: self.avatar != "" ? self.avatar : "placeholder", content: NSAttributedString(string: substring), characterCount: "0", canEdit: false, canPost: contentLength > 0)
 		}
 	}

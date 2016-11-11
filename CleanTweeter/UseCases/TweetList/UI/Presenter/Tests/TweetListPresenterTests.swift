@@ -28,13 +28,13 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 
 	// MARK: TweetListInteractorInput
 	
-	func requestTweetsForUserName(userName: String) {
+	func requestTweetsForUserName(_ userName: String) {
 		self.requestedUser = userName
 	}
 	
 	// MARK: TweetListView
 	
-	func updateViewModel(viewModel: [TweetListItem]) {
+	func updateViewModel(_ viewModel: [TweetListItem]) {
 		self.viewModel = viewModel
 	}
 
@@ -71,16 +71,16 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 
 		sut.foundTweets(response)
 
-		let mentionRange = (content as NSString).rangeOfString("@mention")
-		let tagRange = (content as NSString).rangeOfString("#tag")
+		let mentionRange = (content as NSString).range(of: "@mention")
+		let tagRange = (content as NSString).range(of: "#tag")
 
 		let expectedString = NSMutableAttributedString(string: content)
 
 		for range in [mentionRange, tagRange] {
 #if os(iOS)
-			let color = UIColor.blueColor()
+			let color = UIColor.blue
 #else
-			let color = NSColor.blueColor()
+			let color = NSColor.blue
 #endif
 			expectedString.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
 		}

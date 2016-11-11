@@ -16,14 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		dependencies = CleanTweeterDependenciesMac()
 	}
 	
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		dependencies.showWindow()
 	}
 
-	func applicationWillTerminate(aNotification: NSNotification) {
+	func applicationWillTerminate(_ aNotification: Notification) {
 	}
 
-	func applicationShouldTerminateAfterLastWindowClosed(theApplication: NSApplication) -> Bool {
+	func applicationShouldTerminateAfterLastWindowClosed(_ theApplication: NSApplication) -> Bool {
 		return true
 	}
 }

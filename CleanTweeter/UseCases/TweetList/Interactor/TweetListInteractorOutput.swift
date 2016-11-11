@@ -2,5 +2,5 @@
 import Foundation
 
 protocol TweetListInteractorOutput {
-	func foundTweets(tweetlist: [TweetListResponseModel])
+	func foundTweets(_ tweetlist: [TweetListResponseModel])
 }

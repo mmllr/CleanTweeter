@@ -7,16 +7,16 @@ class RepositorySpy : UserRepository {
 	var mockedUser: User?
 	var updatedUser: User?
 	
-	func findUser(userName: String) -> User? {
+	func findUser(_ userName: String) -> User? {
 		requestedUser = userName
 		return mockedUser
 	}
 	
-	func updateUser(user: User) {
+	func updateUser(_ user: User) {
 		updatedUser = user
 	}
 	
-	func givenTheUser(user: User) {
+	func givenTheUser(_ user: User) {
 		mockedUser = user
 	}
 }
@@ -24,7 +24,7 @@ class RepositorySpy : UserRepository {
 class OutputSpy : NewPostInteractorOutput {
 	var avatar: String?
 
-	func foundAvatar(avatar: String) {
+	func foundAvatar(_ avatar: String) {
 		self.avatar = avatar
 	}
 }
@@ -44,7 +44,7 @@ class NewPostInteractorTests: XCTestCase {
 	func testThatANewPostAsksTheRepositoryForThatUser() {
 		sut = NewPostInteractor(repository: repositorySpy)
 
-		sut.postContent("new post", forUser: "u", publicationDate: NSDate())
+		sut.postContent("new post", forUser: "u", publicationDate: Date())
 
 		XCTAssertEqual(repositorySpy.requestedUser, "u")
 	}
@@ -53,7 +53,7 @@ class NewPostInteractorTests: XCTestCase {
 		sut = NewPostInteractor(repository: repositorySpy)
 		repositorySpy.givenTheUser(User(name: "user", followedUsers: [], tweets: []))
 
-		let date = NSDate()
+		let date = Date()
 		sut.postContent("new post", forUser: "user", publicationDate: date)
 
 		XCTAssertEqual(User(name: "user", followedUsers: [], tweets: [Tweet(author: "user", content: "new post", publicationDate: date)]), repositorySpy.updatedUser)
@@ -61,10 +61,10 @@ class NewPostInteractorTests: XCTestCase {
 
 	func testThatANewPostWillAppendTheContentToTheUserWithTweetsInTheRepository() {
 		sut = NewPostInteractor(repository: repositorySpy)
-		let tweetDate = NSDate()
+		let tweetDate = Date()
 		repositorySpy.givenTheUser(User(name: "user", followedUsers: [], tweets: [Tweet(author: "user", content: "c1", publicationDate: tweetDate)], avatar: "my avatar"))
 		
-		let date = NSDate()
+		let date = Date()
 		sut.postContent("new post", forUser: "user", publicationDate: date)
 		
 		XCTAssertEqual(User(name: "user", followedUsers: [], tweets: [Tweet(author: "user", content: "c1", publicationDate: tweetDate),
@@ -74,7 +74,7 @@ class NewPostInteractorTests: XCTestCase {
 	func testThatPostingATweetForAnUnknownUserWillDoNothing() {
 		sut = NewPostInteractor(repository: repositorySpy)
 		
-		let date = NSDate()
+		let date = Date()
 		sut.postContent("new post", forUser: "user", publicationDate: date)
 		
 		XCTAssertEqual(nil, repositorySpy.updatedUser)

@@ -9,14 +9,14 @@ import Foundation
 class UserRepositoryMock : UserRepository {
 	var store: Dictionary<String, User> = [:]
 
-	func  findUser(userName: String) -> User? {
+	func  findUser(_ userName: String) -> User? {
 		return store[userName]
 	}
 
-	func updateUser(user: User) {
+	func updateUser(_ user: User) {
 	}
 
-	func givenTheUsers(users: [User]) {
+	func givenTheUsers(_ users: [User]) {
 		for user in users {
 			store[user.name] = user
 		}

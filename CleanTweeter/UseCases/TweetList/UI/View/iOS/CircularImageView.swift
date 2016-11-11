@@ -12,7 +12,7 @@ import UIKit
 	@IBInspectable var image: UIImage? {
 		didSet {
 			self.layer.masksToBounds = true;
-			self.layer.contents = image?.CGImage
+			self.layer.contents = image?.cgImage
 			self.layer.contentsGravity = kCAGravityResizeAspectFill
 		}
 	}
@@ -29,7 +29,7 @@ import UIKit
 	}
 	@IBInspectable var borderColor: UIColor? {
 		didSet {
-			layer.borderColor = borderColor?.CGColor
+			layer.borderColor = borderColor?.cgColor
 		}
 	}
 }

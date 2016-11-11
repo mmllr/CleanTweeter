@@ -11,27 +11,27 @@ class NewPostViewController: UIViewController, NewPostView, UITextViewDelegate {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done:"))
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewPostViewController.done(_:)))
 		self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "Done"
 
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("cancel:"))
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewPostViewController.cancel(_:)))
 		self.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "Cancel"
 		self.automaticallyAdjustsScrollViewInsets = true
 	}
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		let content = contentTextView.text != nil ? contentTextView.text : ""
-		self.moduleInterface?.requestViewForContent(content)
+		//let content =  != nil ? contentTextView.text : ""
+		self.moduleInterface?.requestViewForContent(contentTextView.text ?? "")
 		self.contentTextView.becomeFirstResponder()
 	}
 	
-	func updateView(viewModel: NewPostViewModel) {
+	func updateView(_ viewModel: NewPostViewModel) {
 		countLabel.text = viewModel.characterCount
 		contentTextView.attributedText = viewModel.content
 		self.title = viewModel.name
-		self.navigationItem.rightBarButtonItem!.enabled = viewModel.canPost
-		if let data = NSData(contentsOfURL: NSURL(string: viewModel.avatar)!) {
+		self.navigationItem.rightBarButtonItem!.isEnabled = viewModel.canPost
+		if let data = try? Data(contentsOf: URL(string: viewModel.avatar)!) {
 			self.avatarImageView.image = UIImage(data: data)
 		}
 		else {
@@ -39,16 +39,16 @@ class NewPostViewController: UIViewController, NewPostView, UITextViewDelegate {
 		}
 	}
 
-	func textViewDidChange(textView: UITextView) {
+	func textViewDidChange(_ textView: UITextView) {
 		self.moduleInterface?.requestViewForContent(textView.text)
 	}
 
-	@IBAction func done(sender: AnyObject?) {
+	@IBAction func done(_ sender: AnyObject?) {
 		self.moduleInterface?.post()
 		self.routingDelegate?.hideNewPostView()
 	}
 
-	@IBAction func cancel(sender: AnyObject?) {
+	@IBAction func cancel(_ sender: AnyObject?) {
 		self.routingDelegate?.hideNewPostView()
 	}
 }

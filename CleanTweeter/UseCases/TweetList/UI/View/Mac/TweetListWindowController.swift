@@ -9,27 +9,27 @@
 import Foundation
 import Cocoa
 
-public class TweetListWindowController : NSWindowController, TweetListView {
-	@IBOutlet public weak var tableView: NSTableView?
+class TweetListWindowController : NSWindowController, TweetListView {
+	@IBOutlet open weak var tableView: NSTableView?
 	var viewModel: [TweetListItem] = []
 
-	public var moduleInterface: TweetListInterface?
+	var moduleInterface: TweetListInterface?
 
-	public func updateViewModel(viewModel: [TweetListItem]) {
+	func updateViewModel(_ viewModel: [TweetListItem]) {
 		self.viewModel = viewModel
 		tableView?.reloadData()
 	}
 
-	override public func windowDidLoad() {
+	override func windowDidLoad() {
 		moduleInterface?.requestTweetsForUser("Tim Cook")
 	}
 
-	func numberOfRowsInTableView(aTableView: NSTableView!) -> Int {
+	func numberOfRowsInTableView(_ aTableView: NSTableView!) -> Int {
 		return self.viewModel.count
 	}
 
-	func tableView(tableView: NSTableView!, viewForTableColumn: NSTableColumn!, row: Int) -> NSView! {
-		let view = tableView.makeViewWithIdentifier( "HeadingContentCell", owner: self) as! HeadingContentCell
+	func tableView(_ tableView: NSTableView!, viewForTableColumn: NSTableColumn!, row: Int) -> NSView! {
+		let view = tableView.make( withIdentifier: "HeadingContentCell", owner: self) as! HeadingContentCell
 
 		view.primaryHeadingLabel.stringValue = viewModel[row].primaryHeading
 		view.secondaryHeadingLabel.stringValue = viewModel[row].secondaryHeading

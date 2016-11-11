@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func unique<T: Hashable>(array: [T]) -> [T] {
+public func unique<T: Hashable>(_ array: [T]) -> [T] {
 	var uniqueValues: Set<T> = Set();
 
 	return array.filter {

@@ -32,14 +32,14 @@ class TweetTests: XCTestCase {
 	}
 
 	func testThatATweetHasAPublicationDate() {
-		let expectedDate = NSDate()
+		let expectedDate = Date()
 		let sut = Tweet(author: "a", content: "content", publicationDate: expectedDate)
 
 		XCTAssertEqual(sut.publicationDate, expectedDate)
 	}
 
 	func testThatATweetCreatedWithAPublicationDateInTheFutureWillHaveAPublictionDateOfTheCurrentDate() {
-		let distantFutureDate: NSDate = NSDate.distantFuture() as NSDate
+		let distantFutureDate: Date = Date.distantFuture as Date
 
 		let sut = Tweet(author: "a", content: "content", publicationDate: distantFutureDate)
 		XCTAssertLessThanOrEqual(sut.publicationDate.timeIntervalSinceNow, 0)
@@ -52,7 +52,7 @@ class TweetTests: XCTestCase {
 	}
 
 	func testThatTwoTweetsWithIdenticalPropertiesAreEqual() {
-		let now = NSDate()
+		let now = Date()
 		let t1 = Tweet(author: "a", content: "c", publicationDate: now)
 		let t2 = Tweet(author: "a", content: "c", publicationDate: now)
 
@@ -60,7 +60,7 @@ class TweetTests: XCTestCase {
 	}
 
 	func testThatTwoTweetsWithDifferentAuthorsAreNotEqual() {
-		let now = NSDate()
+		let now = Date()
 		let t1 = Tweet(author: "a", content: "c", publicationDate: now)
 		let t2 = Tweet(author: "b", content: "c", publicationDate: now)
 		
@@ -68,14 +68,14 @@ class TweetTests: XCTestCase {
 	}
 
 	func testThatTwoTweetsWithDifferentPublicationDatesAreNotEqual() {
-		let t1 = Tweet(author: "a", content: "c", publicationDate: NSDate.distantPast() as NSDate)
-		let t2 = Tweet(author: "a", content: "c", publicationDate: NSDate())
+		let t1 = Tweet(author: "a", content: "c", publicationDate: Date.distantPast as Date)
+		let t2 = Tweet(author: "a", content: "c", publicationDate: Date())
 		
 		XCTAssertNotEqual(t1, t2)
 	}
 
 	func testThatTwoTweetsWithDifferentContentAreNotEqual() {
-		let now = NSDate()
+		let now = Date()
 	
 		let t1 = Tweet(author: "a", content: "c", publicationDate: now)
 		let t2 = Tweet(author: "a", content: "other content", publicationDate: now)
@@ -84,44 +84,44 @@ class TweetTests: XCTestCase {
 	}
 
 	func testThatThatATweetIsComparablebyDate() {
-		let t1 = Tweet(author: "a", content: "c", publicationDate: NSDate.distantPast() as NSDate)
-		let t2 = Tweet(author: "a", content: "c", publicationDate: NSDate.distantFuture() as NSDate)
+		let t1 = Tweet(author: "a", content: "c", publicationDate: Date.distantPast as Date)
+		let t2 = Tweet(author: "a", content: "c", publicationDate: Date.distantFuture as Date)
 
 		XCTAssertGreaterThan(t1, t2)
 	}
 
 	func testThatATweetWithOneMentionedUserHasTheUserInItsMentionedUsers() {
-		let tweet = Tweet(author: "a", content: "@mentionedUser", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "@mentionedUser", publicationDate: Date())
 
 		XCTAssertEqual(tweet.mentionedUsers, ["@mentionedUser"])
 	}
 
 	func testThatATweetWithMultipleMentionedUsersHasThemInItsMentionedUsersInTheOrderTheyAppear() {
-		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3", publicationDate: Date())
 		
 		XCTAssertEqual(tweet.mentionedUsers, ["@u1", "@u2", "@u3"])
 	}
 
 	func testThatMentionedUsersOnlyAppearOnceInTheOrderTheyAppear() {
-		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3 @u2", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "@u1 @u2 content @u3 @u2", publicationDate: Date())
 
 		XCTAssertEqual(tweet.mentionedUsers, ["@u1", "@u2", "@u3"])
 	}
 
 	func testThatATweetWithOneTagHasTheTag() {
-		let tweet = Tweet(author: "a", content: "Tweet with #tag", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "Tweet with #tag", publicationDate: Date())
 
 		XCTAssertEqual(tweet.tags, ["#tag"])
 	}
 
 	func testThatATweetWithManyTagHasTheTagsInTheOrderAsTheAppear() {
-		let tweet = Tweet(author: "a", content: "#tag and #other tags, just #another", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "#tag and #other tags, just #another", publicationDate: Date())
 		
 		XCTAssertEqual(tweet.tags, ["#tag", "#other", "#another"])
 	}
 
 	func testThatTagsAreUnique() {
-		let tweet = Tweet(author: "a", content: "#tag and #tag and another #tag", publicationDate: NSDate())
+		let tweet = Tweet(author: "a", content: "#tag and #tag and another #tag", publicationDate: Date())
 		
 		XCTAssertEqual(tweet.tags, ["#tag"])
 	}

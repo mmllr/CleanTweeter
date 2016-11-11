@@ -18,7 +18,7 @@ struct User : Equatable {
 		self.name = name
 		self.followedUsers = Set(followedUsers).filter {
 			$0 != name
-		}.sort()
+		}.sorted()
 		self.tweets = tweets
 		self.avatar = avatar
 	}

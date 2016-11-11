@@ -2,7 +2,7 @@
 import Foundation
 
 protocol NewPostInterface {
-	func requestViewForContent(content: String)
+	func requestViewForContent(_ content: String)
 	func post()
 
 }

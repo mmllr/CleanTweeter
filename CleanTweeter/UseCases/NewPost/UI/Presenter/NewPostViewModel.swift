@@ -23,7 +23,7 @@ func==(lhs: NewPostViewModel, rhs: NewPostViewModel) -> Bool {
 	if lhs.avatar != rhs.avatar {
 		return false
 	}
-	if !lhs.content.isEqualToAttributedString(rhs.content) {
+	if !lhs.content.isEqual(to: rhs.content) {
 		return false
 	}
 	return lhs.characterCount == rhs.characterCount

@@ -6,6 +6,6 @@ class MobileResourceFactory : ResourceFactory {
 	var highlightingAttribute: (String, AnyObject)
 
 	init() {
-		highlightingAttribute = (NSForegroundColorAttributeName, UIColor.blueColor())
+		highlightingAttribute = (NSForegroundColorAttributeName, UIColor.blue)
 	}
 }

@@ -25,10 +25,10 @@ class CleanTweeterDependencies : TweetListRoutingDelegate, NewPostRoutingDelegat
 		let vc = newPostWireframe.viewController
 		vc.routingDelegate = self
 		let nav = UINavigationController(rootViewController: vc)
-		self.mainNavigationController.presentViewController(nav, animated: true, completion: nil)
+		self.mainNavigationController.present(nav, animated: true, completion: nil)
 	}
 
 	func hideNewPostView() {
-		self.mainNavigationController.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+		self.mainNavigationController.presentedViewController?.dismiss(animated: true, completion: nil)
 	}
 }

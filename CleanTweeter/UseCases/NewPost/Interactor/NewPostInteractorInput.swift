@@ -2,6 +2,6 @@
 import Foundation
 
 protocol NewPostInteractorInput {
-	func postContent(content: String, forUser: String, publicationDate: NSDate)
-	func requestAvatarForUserName(userName: String)
+	func postContent(_ content: String, forUser: String, publicationDate: Date)
+	func requestAvatarForUserName(_ userName: String)
 }

@@ -2,6 +2,6 @@
 import Foundation
 
 protocol UserRepository {
-	func findUser(userName: String) -> User?
-	func updateUser(user: User)
+	func findUser(_ userName: String) -> User?
+	func updateUser(_ user: User)
 }

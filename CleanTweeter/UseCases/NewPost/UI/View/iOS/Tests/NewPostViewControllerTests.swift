@@ -7,7 +7,7 @@ class NewPostModuleInterfaceSpy : NewPostInterface {
 	var requestedContent: String?
 	var postInvoked: Bool?
 
-	func requestViewForContent(content: String) {
+	func requestViewForContent(_ content: String) {
 		self.requestedContent = content
 	}
 
@@ -90,7 +90,7 @@ class NewPostViewControllerTests: XCTestCase {
 
 		XCTAssertNotNil(item)
 		XCTAssertEqual(item.target as? NewPostViewController, sut)
-		XCTAssertEqual(item.action, Selector("done:"))
+		XCTAssertEqual(item.action, #selector(NewPostViewController.done(_:)))
 	}
 
 	func testThatItHasACancelLeftBarItem() {
@@ -98,7 +98,7 @@ class NewPostViewControllerTests: XCTestCase {
 		
 		XCTAssertNotNil(item)
 		XCTAssertEqual(item.target as? NewPostViewController, sut)
-		XCTAssertEqual(item.action, Selector("cancel:"))
+		XCTAssertEqual(item.action, #selector(NewPostViewController.cancel(_:)))
 	}
 
 	func testThatViewWillAppearWillRequestAViewModel() {
@@ -113,12 +113,12 @@ class NewPostViewControllerTests: XCTestCase {
 		
 		sut.updateView(viewModel)
 
-		XCTAssertTrue(sut.navigationItem.rightBarButtonItem!.enabled)
+		XCTAssertTrue(sut.navigationItem.rightBarButtonItem!.isEnabled)
 
 		viewModel.canPost = false
 		sut.updateView(viewModel)
 		
-		XCTAssertFalse(sut.navigationItem.rightBarButtonItem!.enabled)
+		XCTAssertFalse(sut.navigationItem.rightBarButtonItem!.isEnabled)
 	}
 
 	func testThatInvokingTheCancelActionMethodWillInformTheRoutingDelegate() {

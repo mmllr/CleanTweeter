@@ -2,13 +2,13 @@
 import Foundation
 
 extension String {
-	func findRangesWithPattern(pattern: String) -> [Range<String.Index>] {
+	func findRangesWithPattern(_ pattern: String) -> [Range<String.Index>] {
 		do {
-			let regex: NSRegularExpression = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
-			return regex.matchesInString(self, options: .ReportCompletion, range: NSMakeRange(0, self.characters.count)).map {
-				let start = startIndex.advancedBy($0.range.location)
-				let end = self.startIndex.advancedBy(NSMaxRange($0.range))
-				return Range(start: start, end: end)
+			let regex: NSRegularExpression = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+			return regex.matches(in: self, options: .reportCompletion, range: NSMakeRange(0, self.characters.count)).map {
+				let start = characters.index(startIndex, offsetBy: $0.range.location)
+				let end = self.characters.index(self.startIndex, offsetBy: NSMaxRange($0.range))
+				return (start ..< end)
 			}
 		} catch _ {
 			return []

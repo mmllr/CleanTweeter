@@ -9,7 +9,7 @@ class NewPostInteractor : NewPostInteractorInput {
 		self.repository = repository
 	}
 
-	func postContent(content: String, forUser: String, publicationDate: NSDate) {
+	func postContent(_ content: String, forUser: String, publicationDate: Date) {
 		if let user = repository.findUser(forUser) {
 			var tweets = user.tweets
 			tweets.append(Tweet(author: user.name, content: content, publicationDate: publicationDate))
@@ -18,7 +18,7 @@ class NewPostInteractor : NewPostInteractorInput {
 		}
 	}
 
-	func requestAvatarForUserName(userName: String) {
+	func requestAvatarForUserName(_ userName: String) {
 		if let user = repository.findUser(userName) {
 			self.output?.foundAvatar(user.avatar)
 		}

@@ -67,6 +67,8 @@
 		28D55BCD1A07E91F00A9ADD9 /* DemoUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BCC1A07E91F00A9ADD9 /* DemoUserRepository.swift */; };
 		28D55BD31A07EE6B00A9ADD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28D55BD11A07EE6B00A9ADD9 /* Main.storyboard */; };
 		28D55BD61A07F1F500A9ADD9 /* TweetListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D55BD51A07F1F500A9ADD9 /* TweetListInterface.swift */; };
+		28DB7B751DD6822800D2BE6B /* NewPostInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287141621C3ADF8800FA03BA /* NewPostInteractorOutput.swift */; };
+		28DB7B761DD6823500D2BE6B /* TagAndMentionHighlightingTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287141661C3AFE9D00FA03BA /* TagAndMentionHighlightingTransformer.swift */; };
 		28E05E081A0139EE006FCEFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E05E071A0139EE006FCEFD /* AppDelegate.swift */; };
 		28E05E0D1A0139EE006FCEFD /* TweetList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28E05E0B1A0139EE006FCEFD /* TweetList.storyboard */; };
 		28E05E0F1A0139EE006FCEFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28E05E0E1A0139EE006FCEFD /* Images.xcassets */; };
@@ -822,25 +824,32 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Markus Müller";
 				TargetAttributes = {
 					2845443B1C3AA90600E505C9 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 28E05E011A0139EE006FCEFD;
 					};
 					28E05E011A0139EE006FCEFD = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
 					};
 					28E05E161A0139EF006FCEFD = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 28E05E011A0139EE006FCEFD;
 					};
 					28FFB3611A0947B800B29AD2 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = A3LVNX627Y;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 					28FFB3701A0947B800B29AD2 = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 28FFB3611A0947B800B29AD2;
 					};
 				};
@@ -995,6 +1004,7 @@
 				2878697E1A094D560023146C /* TweetListInteractor.swift in Sources */,
 				2878698A1A094DCE0023146C /* String+MKMExtenstions.swift in Sources */,
 				287869881A094DB90023146C /* TweetListInterface.swift in Sources */,
+				28DB7B761DD6823500D2BE6B /* TagAndMentionHighlightingTransformer.swift in Sources */,
 				287869891A094DCA0023146C /* Array+MKMExtensions.swift in Sources */,
 				287869961A094FBA0023146C /* TweetListWindowController.swift in Sources */,
 				287869801A094D760023146C /* TweetListInteractorInput.swift in Sources */,
@@ -1002,6 +1012,7 @@
 				28FFB3881A09495B00B29AD2 /* ResourceFactory.swift in Sources */,
 				280FB2EB1A0962A300367737 /* HeadingContentCell.swift in Sources */,
 				28EE57D51C3ACE0B00F7048E /* NewPostInteractorInput.swift in Sources */,
+				28DB7B751DD6822800D2BE6B /* NewPostInteractorOutput.swift in Sources */,
 				287869871A094D970023146C /* Tweet.swift in Sources */,
 				287869821A094D7A0023146C /* TweetListResponseModel.swift in Sources */,
 				28EE57D21C3AC76500F7048E /* NewPostInteractor.swift in Sources */,
@@ -1128,6 +1139,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = CleanTweeter;
 				USES_XCTRUNNER = YES;
 			};
@@ -1144,6 +1156,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = CleanTweeter;
 				USES_XCTRUNNER = YES;
 			};
@@ -1153,6 +1166,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1162,8 +1176,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1172,6 +1188,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1196,6 +1213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1205,8 +1223,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1214,6 +1234,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1223,6 +1244,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1236,6 +1258,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1248,6 +1271,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1267,6 +1291,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CleanTweeter/UseCases/TweetList/Interactor/Tests/CleanTweeterTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanTweeter.app/CleanTweeter";
 			};
 			name = Debug;
@@ -1282,6 +1307,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CleanTweeter/UseCases/TweetList/Interactor/Tests/CleanTweeterTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanTweeter.app/CleanTweeter";
 			};
 			name = Release;
@@ -1290,8 +1316,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A3LVNX627Y;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1299,9 +1326,10 @@
 				INFOPLIST_FILE = CleanTweeterMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeterMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1309,15 +1337,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = A3LVNX627Y;
 				INFOPLIST_FILE = CleanTweeterMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.accuratebits.CleanTweeterMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1340,6 +1370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanTweeterMac.app/Contents/MacOS/CleanTweeterMac";
 			};
 			name = Debug;
@@ -1360,6 +1391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.isnotnil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanTweeterMac.app/Contents/MacOS/CleanTweeterMac";
 			};
 			name = Release;

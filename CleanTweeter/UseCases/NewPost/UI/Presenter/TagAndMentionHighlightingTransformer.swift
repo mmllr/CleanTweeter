@@ -1,7 +1,7 @@
 
-import UIKit
+import Foundation
 
-class TagAndMentionHighlightingTransformer : NSValueTransformer {
+class TagAndMentionHighlightingTransformer : ValueTransformer {
 	let resourceFactory: ResourceFactory
 
 	init(factory: ResourceFactory) {
@@ -16,13 +16,14 @@ class TagAndMentionHighlightingTransformer : NSValueTransformer {
 		return false
 	}
 
-	override func transformedValue(value: AnyObject?) -> AnyObject? {
+	override func transformedValue(_ value: Any?) -> Any? {
 		guard let transformedValue = value as! String? else {
 			return nil
 		}
 		return transformedValue.findRangesWithPattern("((@|#)([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))|(http(s)?://([A-Z0-9a-z._-]*(/)?)*)").reduce(NSMutableAttributedString(string: transformedValue)) {
 			let string = $0
-			let range = NSMakeRange(transformedValue.startIndex.distanceTo($1.startIndex), $1.count)
+			let length = transformedValue.characters.distance(from: $1.lowerBound, to: $1.upperBound)
+			let range = NSMakeRange(transformedValue.characters.distance(from: transformedValue.startIndex, to: $1.lowerBound), length)
 			string.addAttribute(self.resourceFactory.highlightingAttribute.0, value: self.resourceFactory.highlightingAttribute.1, range: range)
 			return string
 		}

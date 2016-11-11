@@ -36,7 +36,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	}
 	// MARK: TweetListInterface
 	
-	func requestTweetsForUser(userName: String) {
+	func requestTweetsForUser(_ userName: String) {
 		self.requestedUser = userName
 	}
 	
@@ -54,8 +54,8 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	func testThatItLoadsTheViewModel() {
 		sut.updateViewModel(self.viewModel)
 
-		for (index, item) in (viewModel).enumerate() {
-			let headingCell = sut.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0)) as! HeadingContentCell
+		for (index, item) in (viewModel).enumerated() {
+			let headingCell = sut.tableView(self.tableView, cellForRowAt: IndexPath(row: index, section: 0)) as! HeadingContentCell
 
 			XCTAssertEqual(headingCell.primaryHeadingLabel.text!, item.primaryHeading)
 			XCTAssertEqual(headingCell.secondaryContentLabel.text!, item.secondaryHeading)
@@ -72,7 +72,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	}
 
 	func testThatTheTableViewDoesNotShowSeparators() {
-		let expectedStyle: UITableViewCellSeparatorStyle = .None
+		let expectedStyle: UITableViewCellSeparatorStyle = .none
 		XCTAssertEqual(sut.tableView.separatorStyle, expectedStyle)
 	}
 
@@ -82,7 +82,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 		let item = sut.navigationItem.rightBarButtonItem!
 		XCTAssertEqual(item.title, NSLocalizedString("New Post", comment: "New Post"))
 		XCTAssertEqual(item.target as? TweetListTableViewController, sut)
-		XCTAssertEqual(item.action, Selector("newPost:"))
+		XCTAssertEqual(item.action, #selector(TweetListTableViewController.newPost(_:)))
 	}
 
 	func testThatTheNewPostActionMethodWillInvokeNewPostOnTheRoutingDelegate() {

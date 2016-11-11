@@ -8,8 +8,8 @@
 
 import Cocoa
 
-public class HeadingContentCell: NSTableCellView {
-	@IBOutlet public weak var primaryHeadingLabel: NSTextField!
-	@IBOutlet public weak var contentLabel: NSTextField!
-	@IBOutlet public weak var secondaryHeadingLabel: NSTextField!
+open class HeadingContentCell: NSTableCellView {
+	@IBOutlet open weak var primaryHeadingLabel: NSTextField!
+	@IBOutlet open weak var contentLabel: NSTextField!
+	@IBOutlet open weak var secondaryHeadingLabel: NSTextField!
 }

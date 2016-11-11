@@ -2,5 +2,5 @@
 import Foundation
 
 protocol NewPostInteractorOutput {
-	func foundAvatar(avatar: String)
+	func foundAvatar(_ avatar: String)
 }

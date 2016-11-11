@@ -9,15 +9,15 @@ import XCTest
 class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 	var sut: TweetListInteractor?
 	var repositoryMock: UserRepositoryMock = UserRepositoryMock()
-	let dateFormatter = NSDateComponentsFormatter()
+	let dateFormatter = DateComponentsFormatter()
 
 	var response: [TweetListResponseModel] = []
 	
     override func setUp() {
         super.setUp()
 
-		dateFormatter.unitsStyle = .Abbreviated
-		dateFormatter.allowedUnits = [.Year, .Day, .Hour, .Minute]
+		dateFormatter.unitsStyle = .abbreviated
+		dateFormatter.allowedUnits = [.year, .day, .hour, .minute]
 		dateFormatter.maximumUnitCount = 1
 		sut = TweetListInteractor(repository:self.repositoryMock)
 		sut!.output = self
@@ -25,18 +25,18 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 
 	// MARK: TweetListInteractorOutput
 	
-	func foundTweets(tweetlist: [TweetListResponseModel]) {
+	func foundTweets(_ tweetlist: [TweetListResponseModel]) {
 		self.response = tweetlist
 	}
 
 	// MARK: stubbing
 
-	func givenADateDaysAgo(days: Int, hours: Int, minutes: Int, seconds: Int) -> NSDate {
-		let timeInterval: NSTimeInterval = -NSTimeInterval(days*24*60*60 + (hours%24)*60*60 + (minutes%60)*60 + (seconds%60))
-		 return NSDate(timeIntervalSinceNow: timeInterval)
+	func givenADateDaysAgo(_ days: Int, hours: Int, minutes: Int, seconds: Int) -> Date {
+		let timeInterval: TimeInterval = -TimeInterval(days*24*60*60 + (hours%24)*60*60 + (minutes%60)*60 + (seconds%60))
+		 return Date(timeIntervalSinceNow: timeInterval)
 	}
 	
-	func givenATweetCreatedDaysAgo(days: Int, hours: Int, minutes: Int, seconds: Int) -> NSDate {
+	func givenATweetCreatedDaysAgo(_ days: Int, hours: Int, minutes: Int, seconds: Int) -> Date {
 		let date = self.givenADateDaysAgo(days, hours: hours, minutes: minutes, seconds: seconds)
 		let tweet = Tweet(author: "u", content: "t1", publicationDate: date)
 		self.repositoryMock.givenTheUsers([User(name: "u", followedUsers: [], tweets:[tweet])])
@@ -45,8 +45,8 @@ class TweetListInteractorTests: XCTestCase, TweetListInteractorOutput {
 	
 	// MARK: Test helpers
 	
-	func expectedAgeStringForDate(date: NSDate) -> String {
-		return dateFormatter.stringFromDate(date, toDate: NSDate())!
+	func expectedAgeStringForDate(_ date: Date) -> String {
+		return dateFormatter.string(from: date, to: Date())!
 	}
 	
 	// MARK: Tests

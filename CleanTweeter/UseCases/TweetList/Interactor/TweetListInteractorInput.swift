@@ -2,5 +2,5 @@
 import Foundation
 
 protocol TweetListInteractorInput {
-	func requestTweetsForUserName(userName:String)
+	func requestTweetsForUserName(_ userName:String)
 }

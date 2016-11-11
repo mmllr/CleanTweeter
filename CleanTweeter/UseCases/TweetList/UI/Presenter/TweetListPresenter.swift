@@ -14,13 +14,13 @@ class TweetListPresenter : TweetListInteractorOutput, TweetListInterface {
 
 	// MARK: TweetListInterface
 
-	func requestTweetsForUser(userName: String) {
+	func requestTweetsForUser(_ userName: String) {
 		interactor?.requestTweetsForUserName(userName)
 	}
 
 	// MARK: TweetListInteractorOutput
 
-	func foundTweets(tweetlist: [TweetListResponseModel]) {
+	func foundTweets(_ tweetlist: [TweetListResponseModel]) {
 		let viewModel: [TweetListItem] = tweetlist.map {
 			return TweetListItem(primaryHeading: $0.user, secondaryHeading: $0.age, content: self.highlightingTransformer.transformedValue($0.content) as! NSAttributedString, imageName: $0.avatar != "" ? $0.avatar : "placeholder")
 		}
