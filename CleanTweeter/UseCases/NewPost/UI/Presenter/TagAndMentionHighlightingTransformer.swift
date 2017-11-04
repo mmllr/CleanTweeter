@@ -22,9 +22,9 @@ class TagAndMentionHighlightingTransformer : ValueTransformer {
 		}
 		return transformedValue.findRangesWithPattern("((@|#)([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))|(http(s)?://([A-Z0-9a-z._-]*(/)?)*)").reduce(NSMutableAttributedString(string: transformedValue)) {
 			let string = $0
-			let length = transformedValue.characters.distance(from: $1.lowerBound, to: $1.upperBound)
-			let range = NSMakeRange(transformedValue.characters.distance(from: transformedValue.startIndex, to: $1.lowerBound), length)
-			string.addAttribute(self.resourceFactory.highlightingAttribute.0, value: self.resourceFactory.highlightingAttribute.1, range: range)
+			let length = transformedValue.distance(from: $1.lowerBound, to: $1.upperBound)
+			let range = NSMakeRange(transformedValue.distance(from: transformedValue.startIndex, to: $1.lowerBound), length)
+			string.addAttribute(NSAttributedStringKey(rawValue: self.resourceFactory.highlightingAttribute.0), value: self.resourceFactory.highlightingAttribute.1, range: range)
 			return string
 		}
 	}

@@ -43,7 +43,7 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 			contentCell?.circularImageView.image = UIImage(data: data)
 		}
 		else {
-			contentCell?.circularImageView.image = UIImage(named: self.viewModel[(indexPath as NSIndexPath).row].imageName)!
+			contentCell?.circularImageView.image = UIImage(named: self.viewModel[(indexPath as NSIndexPath).row].imageName)
 		}
 		contentCell?.circularImageView.accessibilityLabel = self.viewModel[(indexPath as NSIndexPath).row].primaryHeading
 		return contentCell!

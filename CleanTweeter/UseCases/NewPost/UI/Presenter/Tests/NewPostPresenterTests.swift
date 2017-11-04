@@ -44,16 +44,16 @@ class NewPostPresenterTests: XCTestCase {
     }
 
 	func expectedCharacterCountStringForContentString(_ contentString: String) -> String {
-		let counter = 160 - min(contentString.characters.count, 160)
+		let counter = 160 - min(contentString.count, 160)
 		return "\(counter)"
 	}
 
 	func expectedAttributedContentStringForContent(_ content: String, withHighlightingColor: UIColor) -> NSAttributedString {
 		return content.findRangesWithPattern("((@|#)([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))|(http(s)?://([A-Z0-9a-z._-]*(/)?)*)").reduce(NSMutableAttributedString(string: content)) {
 			let string = $0
-			let length = content.characters.distance(from: $1.lowerBound, to: $1.upperBound)
-			let range = NSMakeRange(content.characters.distance(from: content.startIndex, to: $1.lowerBound), length)
-			string.addAttribute(NSForegroundColorAttributeName, value: withHighlightingColor, range: range)
+			let length = content.distance(from: $1.lowerBound, to: $1.upperBound)
+			let range = NSMakeRange(content.distance(from: content.startIndex, to: $1.lowerBound), length)
+			string.addAttribute(NSAttributedStringKey.foregroundColor, value: withHighlightingColor, range: range)
 			return string
 		}
 	}
@@ -79,7 +79,7 @@ class NewPostPresenterTests: XCTestCase {
 		let longString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores"
 
 		for characterCount in 0...159 {
-			let substring = longString.substring(to: longString.characters.index(longString.startIndex, offsetBy: characterCount))
+			let substring = String(longString[..<longString.index(longString.startIndex, offsetBy: characterCount)])
 
 			sut.requestViewForContent(substring)
 
@@ -90,10 +90,10 @@ class NewPostPresenterTests: XCTestCase {
 	func testThatAContentStringWithMore160CharactersIsInTheViewModelsContentAndEditable() {
 		let longString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores"
 
-		let expectedContentString = longString.substring(to: longString.characters.index(longString.startIndex, offsetBy: 160))
+		let expectedContentString = String(longString[..<longString.index(longString.startIndex, offsetBy: 160)])
 
-		for characterCount in 160...longString.characters.count {
-			let substring = longString.substring(to: longString.characters.index(longString.startIndex, offsetBy: characterCount))
+		for characterCount in 160...longString.count {
+			let substring = String(longString[..<longString.index(longString.startIndex, offsetBy: characterCount)])
 			
 			sut.requestViewForContent(substring)
 			
@@ -123,6 +123,6 @@ class NewPostPresenterTests: XCTestCase {
 
 		XCTAssertEqual(self.interactorSpy.postedContent, "New content")
 		XCTAssertEqual(self.interactorSpy.postedUser, "user")
-		XCTAssertEqualWithAccuracy((self.interactorSpy.postedDate?.timeIntervalSinceNow)!, TimeInterval(0), accuracy: 0.1)
+		XCTAssertEqual((self.interactorSpy.postedDate?.timeIntervalSinceNow)!, TimeInterval(0), accuracy: 0.1)
 	}
 }

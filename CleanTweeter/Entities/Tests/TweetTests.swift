@@ -48,7 +48,7 @@ class TweetTests: XCTestCase {
 	func testThatTheContentCannotBeLongerThan160Elements() {
 		let sut = Tweet(author: "a", content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores")
 		
-		XCTAssertEqual(sut.content.characters.count, 160)
+		XCTAssertEqual(sut.content.count, 160)
 	}
 
 	func testThatTwoTweetsWithIdenticalPropertiesAreEqual() {

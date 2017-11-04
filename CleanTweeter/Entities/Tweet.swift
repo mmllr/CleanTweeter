@@ -17,7 +17,7 @@ struct Tweet : Comparable {
 
 	init(author: String, content: String, publicationDate: Date = Date()) {
 		self.author = author
-		self.content = content.characters.count > 160 ? content.substring(to: content.characters.index(content.startIndex, offsetBy: 160)) : content
+		self.content = content.count > 160 ? String(content[..<content.index(content.startIndex, offsetBy: 160)]) : content
 		self.publicationDate = publicationDate.timeIntervalSinceNow > 0 ? Date() : publicationDate
 		self.mentionedUsers = findMentions(self.content)
 		self.tags = findTags(self.content)
@@ -28,7 +28,7 @@ func findMentions(_ text: String) -> [String] {
 	let ranges = text.findRangesWithPattern("(@([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
 
 	return unique(ranges.map {
-		return text.substring(with: $0)
+        return String(text[$0.lowerBound..<$0.upperBound])
 	})
 }
 
@@ -36,7 +36,7 @@ func findTags(_ text: String) -> [String] {
 	let ranges = text.findRangesWithPattern("(#([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
 	
 	return unique(ranges.map {
-		return text.substring(with: $0)
+		return String(text[$0.lowerBound..<$0.upperBound])
 		})
 }
 

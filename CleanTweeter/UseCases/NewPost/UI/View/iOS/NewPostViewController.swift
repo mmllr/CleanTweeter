@@ -35,7 +35,7 @@ class NewPostViewController: UIViewController, NewPostView, UITextViewDelegate {
 			self.avatarImageView.image = UIImage(data: data)
 		}
 		else {
-			self.avatarImageView.image = UIImage(named: viewModel.avatar)!
+			self.avatarImageView.image = UIImage(named: viewModel.avatar)
 		}
 	}
 

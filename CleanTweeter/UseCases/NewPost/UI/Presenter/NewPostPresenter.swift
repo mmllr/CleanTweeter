@@ -32,12 +32,12 @@ class NewPostPresenter : NewPostInterface, NewPostInteractorOutput {
 
 	func createViewModel() -> NewPostViewModel {
 		let transformer = TagAndMentionHighlightingTransformer(factory: self.resourceFactory)
-		let contentLength = self.content.characters.count
+		let contentLength = self.content.count
 		if contentLength < 160 {
 			return NewPostViewModel(name: self.userName, avatar: self.avatar != "" ? self.avatar : "placeholder", content: transformer.transformedValue(self.content) as! NSAttributedString, characterCount: "\(160 - contentLength)", canEdit: true, canPost: contentLength > 0)
 		}
 		else {
-			let substring = self.content.substring(to: self.content.characters.index(self.content.startIndex, offsetBy: 160))
+			let substring = String(self.content[..<self.content.index(self.content.startIndex, offsetBy: 160)])
 			return NewPostViewModel(name: self.userName, avatar: self.avatar != "" ? self.avatar : "placeholder", content: NSAttributedString(string: substring), characterCount: "0", canEdit: false, canPost: contentLength > 0)
 		}
 	}

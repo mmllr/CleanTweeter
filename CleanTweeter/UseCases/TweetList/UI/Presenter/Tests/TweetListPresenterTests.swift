@@ -82,7 +82,7 @@ class TweetListPresenterTests: XCTestCase, TweetListView, TweetListInteractorInp
 #else
 			let color = NSColor.blue
 #endif
-			expectedString.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+			expectedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
 		}
 
 		let viewModelItem = self.viewModel[0]

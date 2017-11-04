@@ -16,9 +16,9 @@ struct User : Equatable {
 
 	init(name: String, followedUsers: [String], tweets: [Tweet], avatar: String = "") {
 		self.name = name
-		self.followedUsers = Set(followedUsers).filter {
+		self.followedUsers = Set<String>(followedUsers).filter {
 			$0 != name
-		}.sorted()
+		}
 		self.tweets = tweets
 		self.avatar = avatar
 	}
