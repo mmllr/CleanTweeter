@@ -23,7 +23,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 
     override func setUp() {
         super.setUp()
-		sut = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as! TweetListTableViewController
+		sut = UIStoryboard(name: "TweetList", bundle:nil).instantiateInitialViewController() as? TweetListTableViewController
 		self.view = sut.view!
 		self.tableView = sut.tableView
 		sut.moduleInterface = self
@@ -48,7 +48,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 
 	func testThatTheTableViewHasVariableRowHeights() {
 		XCTAssertEqual(self.tableView.estimatedRowHeight, CGFloat(60.0))
-		XCTAssertEqual(self.tableView.rowHeight, UITableViewAutomaticDimension)
+		XCTAssertEqual(self.tableView.rowHeight, UITableView.automaticDimension)
 	}
 	
 	func testThatItLoadsTheViewModel() {
@@ -72,7 +72,7 @@ class TweetListTableViewControllerTests: XCTestCase, TweetListInterface {
 	}
 
 	func testThatTheTableViewDoesNotShowSeparators() {
-		let expectedStyle: UITableViewCellSeparatorStyle = .none
+		let expectedStyle: UITableViewCell.SeparatorStyle = .none
 		XCTAssertEqual(sut.tableView.separatorStyle, expectedStyle)
 	}
 

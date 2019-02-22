@@ -3,9 +3,9 @@ import Foundation
 import Cocoa
 
 class OSXResourceFactory : ResourceFactory {
-	var highlightingAttribute: (String, AnyObject)
+	var highlightingAttribute: (NSAttributedString.Key, AnyObject)
 	
 	init() {
-		highlightingAttribute = (NSForegroundColorAttributeName, NSColor.blue)
+		highlightingAttribute = (NSAttributedString.Key.foregroundColor as NSAttributedString.Key, NSColor.blue)
 	}
 }

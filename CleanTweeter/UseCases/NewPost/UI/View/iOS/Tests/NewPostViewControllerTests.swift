@@ -31,7 +31,7 @@ class NewPostViewControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-		sut = UIStoryboard(name: "NewPost", bundle:nil).instantiateInitialViewController() as! NewPostViewController
+		sut = UIStoryboard(name: "NewPost", bundle:nil).instantiateInitialViewController() as? NewPostViewController
 		self.view = sut.view!
     }
     

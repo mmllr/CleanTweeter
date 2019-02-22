@@ -2,5 +2,5 @@
 import Foundation
 
 protocol ResourceFactory {
-	var highlightingAttribute: (String, AnyObject) { get }
+	var highlightingAttribute: (NSAttributedString.Key, AnyObject) { get }
 }

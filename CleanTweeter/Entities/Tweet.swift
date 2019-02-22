@@ -26,18 +26,17 @@ struct Tweet : Comparable {
 
 func findMentions(_ text: String) -> [String] {
 	let ranges = text.findRangesWithPattern("(@([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
-
 	return unique(ranges.map {
-        return String(text[$0.lowerBound..<$0.upperBound])
+		return String(text[$0.lowerBound..<$0.upperBound])
 	})
 }
 
 func findTags(_ text: String) -> [String] {
 	let ranges = text.findRangesWithPattern("(#([A-Z0-9a-z(é|ë|ê|è|à|â|ä|á|ù|ü|û|ú|ì|ï|î|í)_]+))")
-	
+
 	return unique(ranges.map {
 		return String(text[$0.lowerBound..<$0.upperBound])
-		})
+	})
 }
 
 func ==(lhs: Tweet, rhs: Tweet) -> Bool {

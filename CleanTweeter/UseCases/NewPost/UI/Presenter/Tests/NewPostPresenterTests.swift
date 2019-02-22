@@ -53,7 +53,7 @@ class NewPostPresenterTests: XCTestCase {
 			let string = $0
 			let length = content.distance(from: $1.lowerBound, to: $1.upperBound)
 			let range = NSMakeRange(content.distance(from: content.startIndex, to: $1.lowerBound), length)
-			string.addAttribute(NSAttributedStringKey.foregroundColor, value: withHighlightingColor, range: range)
+			string.addAttribute(NSAttributedString.Key.foregroundColor, value: withHighlightingColor, range: range)
 			return string
 		}
 	}

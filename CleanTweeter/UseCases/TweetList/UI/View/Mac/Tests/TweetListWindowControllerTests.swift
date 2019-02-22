@@ -46,7 +46,7 @@ class TweetListWindowControllerTests: XCTestCase, TweetListInterface {
 		sut.updateViewModel(self.viewModel)
 
 		for (index, item) in viewModel.enumerated() {
-			let headingCell = sut.tableView!.view(atColumn: 0, row: index, makeIfNecessary: true) as! HeadingContentCell!
+			let headingCell = sut.tableView!.view(atColumn: 0, row: index, makeIfNecessary: true) as? HeadingContentCell
 
 			XCTAssertEqual(headingCell?.primaryHeadingLabel.stringValue, item.primaryHeading)
 			XCTAssertEqual(headingCell?.secondaryHeadingLabel.stringValue, item.secondaryHeading)

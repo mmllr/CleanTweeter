@@ -24,8 +24,14 @@ class TagAndMentionHighlightingTransformer : ValueTransformer {
 			let string = $0
 			let length = transformedValue.distance(from: $1.lowerBound, to: $1.upperBound)
 			let range = NSMakeRange(transformedValue.distance(from: transformedValue.startIndex, to: $1.lowerBound), length)
-			string.addAttribute(NSAttributedStringKey(rawValue: self.resourceFactory.highlightingAttribute.0), value: self.resourceFactory.highlightingAttribute.1, range: range)
+			string.addAttribute(resourceFactory.highlightingAttribute.0, value: self.resourceFactory.highlightingAttribute.1, range: range)
 			return string
 		}
 	}
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKey(_ input: String) -> NSAttributedString.Key {
+	return NSAttributedString.Key(rawValue: input)
 }

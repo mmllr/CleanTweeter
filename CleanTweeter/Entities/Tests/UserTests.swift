@@ -32,7 +32,7 @@ class UserTests: XCTestCase {
 		XCTAssertEqual(user.followedUsers, [])
 	}
 
-	func testThatAUserHaseOnlyDistinctFollowedUsers() {
+	func testThatAUserHasOnlyDistinctFollowedUsers() {
 		let user = User(name: "u", followedUsers: ["f1", "f2", "f2", "f3", "f1", "f3"], tweets: [])
 		
 		XCTAssertEqual(user.followedUsers, ["f1", "f2", "f3"])

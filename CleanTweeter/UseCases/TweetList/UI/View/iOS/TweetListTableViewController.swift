@@ -16,7 +16,7 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 		super.viewDidLoad()
 
 		self.tableView.estimatedRowHeight = CGFloat(60)
-		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.tableView.rowHeight = UITableView.automaticDimension
 		self.tableView.separatorStyle = .none
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("New Post", comment: "New Post"), style: .plain, target: self, action: #selector(TweetListTableViewController.newPost(_:)))
 		self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "New Post"
@@ -35,18 +35,18 @@ class TweetListTableViewController: UITableViewController, TweetListView {
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let contentCell = tableView.dequeueReusableCell(withIdentifier: "HeadingContentCell") as! HeadingContentCell!
-		contentCell?.primaryHeadingLabel.text = self.viewModel[(indexPath as NSIndexPath).row].primaryHeading
-		contentCell?.secondaryContentLabel.text = self.viewModel[(indexPath as NSIndexPath).row].secondaryHeading
-		contentCell?.contentLabel.attributedText = self.viewModel[(indexPath as NSIndexPath).row].content
+		let contentCell = tableView.dequeueReusableCell(withIdentifier: "HeadingContentCell") as! HeadingContentCell
+		contentCell.primaryHeadingLabel.text = self.viewModel[(indexPath as NSIndexPath).row].primaryHeading
+		contentCell.secondaryContentLabel.text = self.viewModel[(indexPath as NSIndexPath).row].secondaryHeading
+		contentCell.contentLabel.attributedText = self.viewModel[(indexPath as NSIndexPath).row].content
 		if let data = try? Data(contentsOf: URL(string: self.viewModel[(indexPath as NSIndexPath).row].imageName)!) {
-			contentCell?.circularImageView.image = UIImage(data: data)
+			contentCell.circularImageView.image = UIImage(data: data)
 		}
 		else {
-			contentCell?.circularImageView.image = UIImage(named: self.viewModel[(indexPath as NSIndexPath).row].imageName)
+			contentCell.circularImageView.image = UIImage(named: self.viewModel[(indexPath as NSIndexPath).row].imageName)
 		}
-		contentCell?.circularImageView.accessibilityLabel = self.viewModel[(indexPath as NSIndexPath).row].primaryHeading
-		return contentCell!
+		contentCell.circularImageView.accessibilityLabel = self.viewModel[(indexPath as NSIndexPath).row].primaryHeading
+		return contentCell
 	}
 	
 	@IBAction func newPost(_ sender: AnyObject?) {

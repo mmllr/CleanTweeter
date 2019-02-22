@@ -13,7 +13,7 @@ import UIKit
 		didSet {
 			self.layer.masksToBounds = true;
 			self.layer.contents = image?.cgImage
-			self.layer.contentsGravity = kCAGravityResizeAspectFill
+			self.layer.contentsGravity = CALayerContentsGravity.resizeAspectFill
 		}
 	}
 	override var frame: CGRect {
